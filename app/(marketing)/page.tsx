@@ -27,9 +27,11 @@ import {
   PlayCircle,
   Link2,
   Lock,
-  Activity
+  Activity,
+  Code
 } from 'lucide-react';
 import PilotCreditCalculator from '@/components/billing/PilotCreditCalculator';
+import DevelopmentVsAgentsPilotCalculator from '@/components/marketing/DevelopmentVsAgentsPilotCalculator';
 import { useRouter } from 'next/navigation';
 
 export default function MarketingPage() {
@@ -641,8 +643,263 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 6. TRUST & SAFETY */}
+      {/* 6. COST COMPARISON: DEVELOPMENT VS AGENTSPILOT */}
       <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
+        <div className="max-w-6xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 tracking-tight"
+          >
+            Building vs <span className="text-orange-500">Buying</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="text-center text-zinc-400 mb-12 md:mb-16 max-w-3xl mx-auto text-lg"
+          >
+            See how much you save by using AgentsPilot instead of building custom automation from scratch.
+          </motion.p>
+
+          {/* Use Case Description */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="mb-12 bg-zinc-900/50 border border-zinc-800 p-6 md:p-8"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mb-3 text-center">
+              Use Case: Smart Email Management Agent
+            </h3>
+            <p className="text-center text-zinc-400 mb-6 max-w-3xl mx-auto text-lg">
+              An AI agent that continuously monitors your inbox, identifies urgent client emails, drafts professional replies, and sends you a summary via Slack
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-3 mb-4">
+              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
+                Gmail Integration
+              </span>
+              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
+                Slack Notifications
+              </span>
+              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
+                AI-Powered Analysis
+              </span>
+              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
+                Automated Responses
+              </span>
+            </div>
+          </motion.div>
+
+          {/* 3-Column Cost Comparison */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+            {/* Column 1: Manual Approach */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-zinc-900/50 border border-zinc-800 p-6"
+            >
+              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
+                <Users className="w-10 h-10 text-red-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-zinc-50 mb-2">Doing It Manually</h3>
+                <p className="text-sm text-zinc-400">Non-technical user</p>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Check email every hour (8x/day)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Read and prioritize messages</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Draft replies manually</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Send Slack updates</span>
+                </div>
+              </div>
+
+              <div className="border-t border-zinc-800 pt-4">
+                <div className="text-sm text-zinc-400 mb-2">Time Cost</div>
+                <div className="text-3xl font-bold text-red-400 mb-2">2 hrs/day</div>
+                <div className="text-xs text-zinc-400">≈ 40 hours per month</div>
+              </div>
+
+              <div className="mt-4 bg-zinc-800/50 p-4">
+                <div className="text-sm text-zinc-400 mb-1">Monthly Value</div>
+                <div className="text-2xl font-bold text-red-400">$2,000</div>
+                <div className="text-xs text-zinc-400 mt-1">At $50/hour opportunity cost</div>
+              </div>
+            </motion.div>
+
+            {/* Column 2: Developer Services */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-zinc-900/50 border border-zinc-800 p-6"
+            >
+              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
+                <Code className="w-10 h-10 text-yellow-400 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-zinc-50 mb-2">Developer Services</h3>
+                <p className="text-sm text-zinc-400">Hire custom development</p>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Requirements gathering (8 hrs)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Development & testing (60 hrs)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Deployment & training (12 hrs)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-400">
+                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
+                  <span>Monthly maintenance</span>
+                </div>
+              </div>
+
+              <div className="border-t border-zinc-800 pt-4">
+                <div className="text-sm text-zinc-400 mb-2">Initial Development</div>
+                <div className="text-3xl font-bold text-yellow-400 mb-2">$12,000</div>
+                <div className="text-xs text-zinc-400">80 hours @ $150/hr</div>
+              </div>
+
+              <div className="mt-4 bg-zinc-800/50 p-4">
+                <div className="text-sm text-zinc-400 mb-1">+ Monthly Maintenance</div>
+                <div className="text-2xl font-bold text-yellow-400">$500</div>
+                <div className="text-xs text-zinc-400 mt-1">Updates, bug fixes, support</div>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-zinc-700">
+                <div className="text-xs text-zinc-400 mb-1">First Year Total</div>
+                <div className="text-xl font-bold text-yellow-300">$18,000</div>
+              </div>
+            </motion.div>
+
+            {/* Column 3: AgentsPilot */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gradient-to-b from-orange-500/10 to-zinc-900/50 border-2 border-orange-500/50 p-6 relative"
+            >
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-orange-500 text-white text-xs font-bold uppercase tracking-wide">
+                Best Value
+              </div>
+
+              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
+                <Zap className="w-10 h-10 text-orange-500 mx-auto mb-3" />
+                <h3 className="text-xl font-bold text-zinc-50 mb-2">AgentsPilot</h3>
+                <p className="text-sm text-zinc-400">Build it yourself in minutes</p>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="flex items-start gap-2 text-sm text-zinc-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Describe what you want (5 min)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Connect Gmail & Slack (3 min)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Test & activate (2 min)</span>
+                </div>
+                <div className="flex items-start gap-2 text-sm text-zinc-300">
+                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span>Agent runs 24/7 automatically</span>
+                </div>
+              </div>
+
+              <div className="border-t border-orange-500/30 pt-4">
+                <div className="text-sm text-orange-400 mb-2">Setup Time</div>
+                <div className="text-3xl font-bold text-orange-500 mb-2">10 minutes</div>
+                <div className="text-xs text-zinc-300">No coding required</div>
+              </div>
+
+              <div className="mt-4 bg-orange-500/20 border border-orange-500/30 p-4">
+                <div className="text-sm text-orange-400 mb-1">Monthly Cost</div>
+                <div className="text-2xl font-bold text-orange-500">$25</div>
+                <div className="text-xs text-zinc-300 mt-1">Includes hosting, maintenance, updates</div>
+                <div className="text-xs text-green-300 mt-2 font-medium">+ Create multiple agents at this price</div>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-orange-500/30">
+                <div className="text-xs text-orange-400 mb-1">First Year Total</div>
+                <div className="text-xl font-bold text-orange-500">$300</div>
+              </div>
+
+              <button className="w-full mt-6 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-colors flex items-center justify-center gap-2">
+                Get Started Free
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Savings Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="bg-gradient-to-r from-green-500/10 to-orange-500/10 border border-green-500/30 p-6 md:p-8"
+          >
+            <div className="text-center mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                AgentsPilot saves you <span className="text-green-400">98%+</span>
+              </h3>
+              <p className="text-zinc-400">Compared to custom development, with zero technical skills required</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-zinc-900/80 p-6 text-center">
+                <div className="text-sm text-green-400 mb-2 font-medium">vs Manual Work</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">$1,975</div>
+                <div className="text-sm text-green-300">saved per month</div>
+                <div className="text-xs text-zinc-500 mt-2">Reclaim 40 hours monthly</div>
+              </div>
+
+              <div className="bg-zinc-900/80 p-6 text-center">
+                <div className="text-sm text-green-400 mb-2 font-medium">vs Developer Services</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">$17,700</div>
+                <div className="text-sm text-green-300">saved first year</div>
+                <div className="text-xs text-zinc-500 mt-2">98.3% cost reduction</div>
+              </div>
+
+              <div className="bg-zinc-900/80 p-6 text-center">
+                <div className="text-sm text-green-400 mb-2 font-medium">Time to Launch</div>
+                <div className="text-3xl font-bold text-green-400 mb-1">10 min</div>
+                <div className="text-sm text-green-300">vs 2-3 months</div>
+                <div className="text-xs text-zinc-500 mt-2">Start today, not next quarter</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 7. TRUST & SAFETY */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -691,8 +948,8 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 7. SMART INSIGHTS */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
+      {/* 8. SMART INSIGHTS */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -734,8 +991,8 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 8. WHO IT'S FOR */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
+      {/* 9. WHO IT'S FOR */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -775,8 +1032,8 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 9. PRICING */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
+      {/* 10. PRICING */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -817,8 +1074,8 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 10. FINAL CTA */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-900">
+      {/* 11. FINAL CTA */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-950">
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
