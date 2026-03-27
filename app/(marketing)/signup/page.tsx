@@ -322,14 +322,14 @@ export default function SignupPage() {
           >
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
               <span className="text-orange-400 block">
-                Create Your Account
+                Get Something Handled
               </span>
               <span className="text-white block">
-                Join the AI Workforce
+                Starting Today
               </span>
             </h1>
             <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Start building intelligent agents in minutes. No credit card required.
+              Stop letting things slip through the cracks. No credit card required.
             </p>
           </motion.div>
         </div>
@@ -349,10 +349,10 @@ export default function SignupPage() {
             >
               <div>
                 <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                  Why AgentsPilot?
+                  What You'll Get
                 </h2>
                 <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                  Transform natural language into intelligent agents that automate your work across all your tools.
+                  Just describe what keeps slipping through. We handle it from now on.
                 </p>
               </div>
 
@@ -364,8 +364,8 @@ export default function SignupPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Instant Setup</h3>
-                    <p className="text-slate-400">Create your first agent in under 2 minutes. No technical knowledge required.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">Start in 2 Minutes</h3>
+                    <p className="text-slate-400">Tell us what keeps slipping. We figure out how to handle it.</p>
                   </div>
                 </div>
 
@@ -376,8 +376,8 @@ export default function SignupPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Enterprise Security</h3>
-                    <p className="text-slate-400">Bank-level encryption and SOC 2 compliance to keep your data safe.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">Your Data Stays Safe</h3>
+                    <p className="text-slate-400">Bank-level security. You control what we can access.</p>
                   </div>
                 </div>
 
@@ -388,20 +388,20 @@ export default function SignupPage() {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Free Trial Included</h3>
-                    <p className="text-slate-400">10,417 free Pilot Credits to get started. No credit card needed.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">Start Free</h3>
+                    <p className="text-slate-400">Get one thing handled for free. Only pay when work gets done.</p>
                   </div>
                 </div>
               </div>
 
               <div className="pt-6 border-t border-zinc-800">
-                <h3 className="text-lg font-bold text-white mb-3">What You Get</h3>
+                <h3 className="text-lg font-bold text-white mb-3">What Happens Next</h3>
                 <ul className="space-y-2">
                   {[
-                    '10,417 free Pilot Credits',
-                    'All integrations included',
-                    'Flexible credit-based pricing',
-                    'Cancel anytime'
+                    'Describe what keeps slipping through',
+                    'We figure out how to handle it',
+                    'It gets done automatically from now on',
+                    'Only pay when work actually gets done'
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-slate-300">
                       <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>

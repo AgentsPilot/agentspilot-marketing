@@ -177,11 +177,11 @@ export default function LoginPage() {
                 Welcome Back
               </span>
               <span className="text-white block">
-                Sign In to Continue
+                Pick Up Where You Left Off
               </span>
             </h1>
             <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Access your AI agents and continue automating your workflows.
+              Everything's still handled. Nothing slipped through while you were away.
             </p>
           </motion.div>
         </div>
@@ -200,10 +200,10 @@ export default function LoginPage() {
             >
               <div>
                 <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                  Continue Your Journey
+                  Your Work Is Still Running
                 </h2>
                 <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                  Sign in to access your AI agents, manage your workflows, and continue building the future of automation.
+                  Sign back in to see what got handled while you were away.
                 </p>
               </div>
 
@@ -213,8 +213,8 @@ export default function LoginPage() {
                     <Zap className="w-6 h-6 text-orange-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Instant Access</h3>
-                    <p className="text-slate-400">Jump right back into your agents and workflows. Everything is exactly where you left it.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">Nothing Missed</h3>
+                    <p className="text-slate-400">Everything kept running. Work got done. You're all caught up.</p>
                   </div>
                 </div>
 
@@ -223,8 +223,8 @@ export default function LoginPage() {
                     <Shield className="w-6 h-6 text-purple-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Secure & Private</h3>
-                    <p className="text-slate-400">Your data is encrypted and protected with enterprise-grade security measures.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">Your Data Stays Safe</h3>
+                    <p className="text-slate-400">Bank-level security. You control what we can access.</p>
                   </div>
                 </div>
 
@@ -233,20 +233,20 @@ export default function LoginPage() {
                     <Lock className="w-6 h-6 text-blue-400" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-white mb-1">SOC2 Compliant</h3>
-                    <p className="text-slate-400">Full audit trails and compliance tracking for your organization.</p>
+                    <h3 className="text-lg font-bold text-white mb-1">See What Got Done</h3>
+                    <p className="text-slate-400">Full history of every task that got handled automatically.</p>
                   </div>
                 </div>
               </div>
 
               <div className="pt-6 border-t border-zinc-800">
-                <h3 className="text-lg font-bold text-white mb-3">Your Dashboard Includes</h3>
+                <h3 className="text-lg font-bold text-white mb-3">See What's Running</h3>
                 <ul className="space-y-2">
                   {[
-                    'All your active agents',
-                    'Execution history and logs',
-                    'Credit usage and billing',
-                    'Plugin configurations'
+                    'What got handled automatically',
+                    "What's being watched right now",
+                    'How much work got done',
+                    "What you're paying for"
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-center gap-2 text-slate-300">
                       <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>

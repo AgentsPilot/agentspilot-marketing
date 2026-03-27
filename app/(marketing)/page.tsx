@@ -46,7 +46,8 @@ export default function MarketingPage() {
 
   const useCases = [
     {
-      title: "Monitor my inbox and draft replies I can approve",
+      title: "Email Assistant",
+      subtitle: "Finds important emails, summarizes them, and sends follow-ups",
       icon: Mail,
       color: "#3b82f6",
       details: {
@@ -56,7 +57,19 @@ export default function MarketingPage() {
       }
     },
     {
-      title: "Summarize weekly activity across my tools",
+      title: "Expense Tracker",
+      subtitle: "Extracts invoices and tracks expenses automatically",
+      icon: FileText,
+      color: "#10b981",
+      details: {
+        what: ["Monitors email for invoices", "Extracts expense data", "Categorizes spending", "Generates reports"],
+        see: ["Expense summaries", "Category breakdowns", "Trend analysis"],
+        dont: ["No manual entry", "No receipt hunting", "No spreadsheet updates"]
+      }
+    },
+    {
+      title: "Business Reports",
+      subtitle: "Builds summaries without touching spreadsheets",
       icon: BarChart3,
       color: "#8b5cf6",
       details: {
@@ -66,57 +79,8 @@ export default function MarketingPage() {
       }
     },
     {
-      title: "Alert me when something looks wrong",
-      icon: AlertCircle,
-      color: "#ef4444",
-      details: {
-        what: ["Monitors your systems", "Detects anomalies", "Assesses severity", "Notifies you immediately"],
-        see: ["Clear alert", "Context provided", "Suggested actions"],
-        dont: ["No manual checking", "No complex rules", "No false alarms"]
-      }
-    },
-    {
-      title: "Prepare reports before meetings",
-      icon: FileText,
-      color: "#10b981",
-      details: {
-        what: ["Reviews upcoming meetings", "Gathers relevant data", "Compiles insights", "Formats professionally"],
-        see: ["Ready-to-use report", "Key talking points", "Supporting data"],
-        dont: ["No manual prep", "No last-minute scrambling", "No data hunting"]
-      }
-    },
-    {
-      title: "Track important conversations and decisions",
-      icon: MessageSquare,
-      color: "#f59e0b",
-      details: {
-        what: ["Monitors communication channels", "Identifies key decisions", "Tracks action items", "Maintains context"],
-        see: ["Decision log", "Action items", "Context history"],
-        dont: ["No note-taking", "No searching", "No memory gaps"]
-      }
-    },
-    {
-      title: "Handle routine follow-ups so I don't have to",
-      icon: Clock,
-      color: "#06b6d4",
-      details: {
-        what: ["Tracks pending items", "Determines timing", "Drafts follow-ups", "Sends when appropriate"],
-        see: ["Scheduled follow-ups", "Response tracking", "Completion status"],
-        dont: ["No manual reminders", "No forgotten tasks", "No awkward delays"]
-      }
-    },
-    {
-      title: "Monitor project status and flag blockers",
-      icon: TrendingUp,
-      color: "#ec4899",
-      details: {
-        what: ["Tracks project milestones", "Identifies dependencies", "Spots bottlenecks", "Alerts stakeholders"],
-        see: ["Status updates", "Risk warnings", "Progress reports"],
-        dont: ["No manual status checks", "No missed deadlines", "No surprise delays"]
-      }
-    },
-    {
-      title: "Screen and qualify incoming leads",
+      title: "Lead Manager",
+      subtitle: "Tracks and prioritizes leads for you",
       icon: Users,
       color: "#14b8a6",
       details: {
@@ -126,13 +90,25 @@ export default function MarketingPage() {
       }
     },
     {
-      title: "Organize and categorize incoming content",
-      icon: Sparkles,
-      color: "#a855f7",
+      title: "Smart Alerts",
+      subtitle: "Notifies you only when something needs attention",
+      icon: AlertCircle,
+      color: "#ef4444",
       details: {
-        what: ["Analyzes content type", "Tags and labels", "Files appropriately", "Highlights priorities"],
-        see: ["Organized inbox", "Tagged items", "Priority queue"],
-        dont: ["No manual sorting", "No lost files", "No cluttered folders"]
+        what: ["Monitors your systems", "Detects anomalies", "Assesses severity", "Notifies you immediately"],
+        see: ["Clear alert", "Context provided", "Suggested actions"],
+        dont: ["No manual checking", "No complex rules", "No false alarms"]
+      }
+    },
+    {
+      title: "Follow-up Handler",
+      subtitle: "Handles routine follow-ups so you don't have to",
+      icon: Clock,
+      color: "#06b6d4",
+      details: {
+        what: ["Tracks pending items", "Determines timing", "Drafts follow-ups", "Sends when appropriate"],
+        see: ["Scheduled follow-ups", "Response tracking", "Completion status"],
+        dont: ["No manual reminders", "No forgotten tasks", "No awkward delays"]
       }
     }
   ];
@@ -160,13 +136,17 @@ export default function MarketingPage() {
             >
               <div className="space-y-4">
                 <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                  Your Personal
+                  Your Business.
                   <br />
-                  <span className="text-orange-500">AI Workforce</span>
+                  <span className="text-orange-500">Running Itself.</span>
                 </h1>
 
                 <p className="text-xl md:text-2xl text-zinc-400 leading-relaxed font-light">
-                  AI agents that understand your work, handle tasks for you, and get smarter over time. no technical setup required.
+                  Stop letting things slip through the cracks. Your work gets done automatically.
+                </p>
+
+                <p className="text-base md:text-lg text-zinc-500 font-light">
+                  Emails answered. Follow-ups sent. Reports built. Nothing missed.
                 </p>
               </div>
 
@@ -177,23 +157,18 @@ export default function MarketingPage() {
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="Describe what you want done..."
+                    placeholder="What's falling through the cracks for you?"
                     className="w-full px-6 py-4 pr-40 md:pr-44 bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 focus:outline-none focus:border-orange-500 transition-colors font-mono text-sm"
                   />
-                  <button className="absolute right-2 top-1/2 -translate-y-1/2 px-4 md:px-6 py-2 bg-orange-500 hover:bg-orange-600 font-medium transition-colors flex items-center gap-2 text-sm md:text-base">
-                    <span className="hidden sm:inline">Create Agent</span>
-                    <span className="sm:hidden">Create</span>
+                  <button className="absolute right-2 top-1/2 -translate-y-1/2 px-4 md:px-6 py-2 bg-orange-500 hover:bg-orange-600 font-medium transition-colors flex items-center gap-2 text-sm md:text-base whitespace-nowrap">
+                    Get It Handled (Free)
                     <Send className="w-4 h-4" />
                   </button>
                 </div>
 
-                <button
-                  onClick={() => document.getElementById('use-cases')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="text-slate-400 hover:text-white transition-colors flex items-center gap-2"
-                >
-                  See real examples
-                  <ChevronDown className="w-4 h-4" />
-                </button>
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                  <span className="text-xs text-zinc-600">No credit card. Takes 2 minutes.</span>
+                </div>
               </div>
             </motion.div>
 
@@ -274,54 +249,285 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 2. WHAT IT FEELS LIKE */}
+      {/* 2. THE PAIN (Emotional Hook) */}
       <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 tracking-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-16 tracking-tight"
           >
-            What using AgentsPilot <span className="text-orange-500">feels like</span>
+            You're not behind. <span className="text-orange-500">You're doing too much.</span>
           </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="space-y-4 mb-12"
+          >
+            <p className="text-xl md:text-2xl text-zinc-400 text-center mb-8">Every day you:</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                "Check emails manually",
+                "Forget to follow up",
+                "Re-open the same spreadsheets",
+                "Track things in your head",
+                "Repeat the same tasks",
+                "Wonder what you missed"
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + (idx * 0.1), duration: 0.5 }}
+                  className="flex items-center gap-3 bg-zinc-800/50 border border-zinc-700 p-4"
+                >
+                  <div className="w-2 h-2 bg-red-500 rounded-full flex-shrink-0" />
+                  <span className="text-zinc-300 text-lg">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            className="text-center"
+          >
+            <p className="text-2xl md:text-3xl text-white font-light leading-relaxed">
+              It's not your job to keep everything running.
+              <br />
+              <span className="text-orange-500 font-semibold">But right now, you are.</span>
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 3. WHY CURRENT TOOLS FAIL */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 tracking-tight"
+          >
+            Tools help you work. <span className="text-orange-500">They don't do the work.</span>
+          </motion.h2>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="text-center mb-12"
+          >
+            <p className="text-xl md:text-2xl text-zinc-400 mb-8">
+              Automation tools can connect apps…
+            </p>
+            <p className="text-lg text-zinc-500 mb-8">But they can't:</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto mb-8">
+              {[
+                "Understand what matters",
+                "Make decisions",
+                "Handle real-world scenarios",
+                "Adapt when things change"
+              ].map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 + (idx * 0.1), duration: 0.5 }}
+                  className="bg-zinc-900 border border-zinc-800 p-6 text-center"
+                >
+                  <StopCircle className="w-8 h-8 text-red-500/50 mx-auto mb-3" />
+                  <span className="text-zinc-300 text-base">{item}</span>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+            className="text-2xl md:text-3xl text-center text-orange-500 font-semibold"
+          >
+            So you still end up doing everything yourself.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* 4. THE SHIFT (Key Turning Point) */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 tracking-tight"
+          >
+            What if nothing ever <span className="text-orange-500">slipped through?</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="text-xl md:text-2xl text-zinc-400 text-center mb-12"
+          >
+            Instead of setting rules…
+            <br />
+            <span className="text-white font-semibold">You describe what you want.</span>
+          </motion.p>
+
+          {/* Example Block */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+            className="bg-gradient-to-r from-orange-500/10 to-orange-500/5 border-2 border-orange-500/30 p-8 md:p-12 mb-12"
+          >
+            <p className="text-2xl md:text-3xl text-white font-light italic text-center leading-relaxed">
+              "Check my emails, find invoices above $50, save them, and send me a summary every day."
+            </p>
+          </motion.div>
+
+          {/* Result */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+            className="space-y-6"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8">
+              <span className="text-orange-500">Here's what happens:</span>
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+              {[
+                { icon: Mail, text: "Reads your emails", color: "#3b82f6" },
+                { icon: Sparkles, text: "Identifies what matters", color: "#8b5cf6" },
+                { icon: Activity, text: "Takes action", color: "#10b981" },
+                { icon: Send, text: "Sends results", color: "#f59e0b" }
+              ].map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 + (idx * 0.1), duration: 0.5 }}
+                    className="flex items-center gap-4 bg-zinc-900 border border-zinc-800 p-6"
+                  >
+                    <Icon className="w-6 h-6 flex-shrink-0" style={{ color: item.color }} />
+                    <span className="text-white text-lg">{item.text}</span>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 1.2, duration: 0.7 }}
+              className="text-2xl md:text-3xl text-center text-orange-500 font-bold mt-8"
+            >
+              Automatically.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 5. HOW IT ACTUALLY WORKS */}
+      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
+        <div className="max-w-5xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 tracking-tight"
+          >
+            You don't need to be technical. <span className="text-orange-500">Just describe the problem.</span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="text-center text-zinc-500 mb-16 text-base uppercase tracking-wider font-mono"
+          >
+            Getting Started Takes Minutes
+          </motion.p>
+
+          <div className="space-y-8 md:space-y-12">
             {[
               {
-                title: "You explain",
-                description: '"Every morning, review new emails from clients and alert me if anything urgent comes in."',
+                number: "1",
+                title: "Tell us what keeps slipping",
+                description: "Just type it like you would tell a person",
                 icon: MessageSquare,
-                delay: 0
+                color: "#f97316"
               },
               {
-                title: "AgentsPilot builds",
-                description: "AgentsPilot understands your intent, asks what's missing, and sets up the agent for you.",
+                number: "2",
+                title: "We ask a few simple questions",
+                description: "No technical knowledge required",
                 icon: Brain,
-                delay: 0.2
+                color: "#3b82f6"
               },
               {
-                title: "Work gets done",
-                description: "The agent runs on its own now, later, or continuously.",
-                icon: CheckCircle,
-                delay: 0.4
+                number: "3",
+                title: "It handles itself from now on",
+                description: "Daily, weekly, or in real-time",
+                icon: Zap,
+                color: "#10b981"
               }
-            ].map((card, idx) => {
-              const Icon = card.icon;
+            ].map((step, idx) => {
+              const Icon = step.icon;
               return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.7, delay: card.delay, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-                  className="bg-zinc-900 border border-zinc-800 p-8 hover:border-zinc-700 transition-colors"
+                  transition={{ delay: idx * 0.2, duration: 0.6 }}
+                  whileHover={{ x: 8, scale: 1.02, transition: { duration: 0.3 } }}
+                  className="flex items-start gap-6 bg-zinc-900/50 border border-zinc-800 p-8 hover:border-zinc-700 transition-all"
                 >
-                  <Icon className="w-10 h-10 text-orange-500 mb-6" />
-                  <h3 className="text-xl font-semibold mb-4 tracking-tight">{card.title}</h3>
-                  <p className="text-zinc-400 leading-relaxed">{card.description}</p>
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 rounded-full border-4 flex items-center justify-center" style={{ borderColor: step.color }}>
+                      <span className="text-2xl font-bold" style={{ color: step.color }}>{step.number}</span>
+                    </div>
+                  </div>
+
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Icon className="w-6 h-6" style={{ color: step.color }} />
+                      <h3 className="text-2xl font-bold text-white">{step.title}</h3>
+                    </div>
+                    <p className="text-lg text-zinc-400">{step.description}</p>
+                  </div>
                 </motion.div>
               );
             })}
@@ -329,7 +535,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 3. REAL LIFE USE CASES */}
+      {/* 6. REAL LIFE USE CASES */}
       <section id="use-cases" className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -340,7 +546,7 @@ export default function MarketingPage() {
             className="text-center mb-6 md:mb-8"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 tracking-tight">
-              Built for <span className="text-orange-500">real people</span> doing real work
+              Things you'll never have to <span className="text-orange-500">think about again</span>
             </h2>
           </motion.div>
 
@@ -366,7 +572,8 @@ export default function MarketingPage() {
                         <Icon className="w-5 h-5" style={{ color: useCase.color }} />
                       </div>
                       <div className="flex-1">
-                        <p className="text-white font-medium leading-relaxed">{useCase.title}</p>
+                        <h3 className="text-white font-semibold text-lg mb-2">{useCase.title}</h3>
+                        <p className="text-zinc-400 text-sm leading-relaxed">{useCase.subtitle}</p>
 
                         <AnimatePresence>
                           {isExpanded && (
@@ -381,7 +588,7 @@ export default function MarketingPage() {
                                 <ul className="space-y-2">
                                   {useCase.details.what.map((item, i) => (
                                     <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
-                                      <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                                      <span className="text-orange-500 flex-shrink-0 mt-0.5">•</span>
                                       {item}
                                     </li>
                                   ))}
@@ -393,7 +600,7 @@ export default function MarketingPage() {
                                 <ul className="space-y-2">
                                   {useCase.details.see.map((item, i) => (
                                     <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
-                                      <Eye className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                                      <span className="text-orange-500 flex-shrink-0 mt-0.5">•</span>
                                       {item}
                                     </li>
                                   ))}
@@ -405,7 +612,7 @@ export default function MarketingPage() {
                                 <ul className="space-y-2">
                                   {useCase.details.dont.map((item, i) => (
                                     <li key={i} className="text-sm text-slate-300 flex items-start gap-2">
-                                      <StopCircle className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
+                                      <span className="text-orange-500 flex-shrink-0 mt-0.5">•</span>
                                       {item}
                                     </li>
                                   ))}
@@ -429,7 +636,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 4. WHY THIS IS DIFFERENT */}
+      {/* 7. DIFFERENTIATION (Your MOAT) */}
       <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -437,10 +644,20 @@ export default function MarketingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-16 tracking-tight"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 tracking-tight"
           >
-            This isn't automation. <span className="text-orange-500">It's delegation.</span>
+            This isn't automation. <span className="text-orange-500">This is execution.</span>
           </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="text-center text-zinc-400 mb-12 md:mb-16 text-lg max-w-3xl mx-auto"
+          >
+            Stop building workflows. Start getting results.
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             {/* Traditional Tools */}
@@ -451,13 +668,13 @@ export default function MarketingPage() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="bg-zinc-900/50 border border-zinc-800 p-8"
             >
-              <h3 className="text-lg font-medium text-zinc-500 uppercase tracking-wide mb-6">Traditional Tools</h3>
-              <ul className="space-y-5">
+              <h3 className="text-xl font-bold text-zinc-400 mb-2">Traditional Tools</h3>
+              <p className="text-sm text-zinc-500 mb-6">Zapier, Make, n8n</p>
+              <ul className="space-y-4">
                 {[
-                  "You define every rule",
-                  "You maintain logic",
-                  "You fix failures",
-                  "You manage complexity"
+                  "You build workflows",
+                  "You define rules",
+                  "You fix when it breaks"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-zinc-400 text-base">
                     <div className="w-5 h-5 border border-zinc-700 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -475,15 +692,15 @@ export default function MarketingPage() {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              className="bg-zinc-900/50 border border-orange-500/30 p-8"
+              className="bg-gradient-to-b from-orange-500/10 to-zinc-900/50 border-2 border-orange-500/50 p-8"
             >
-              <h3 className="text-lg font-medium text-orange-500 uppercase tracking-wide mb-6">AgentsPilot</h3>
-              <ul className="space-y-5">
+              <h3 className="text-xl font-bold text-orange-500 mb-2">AgentPilot</h3>
+              <p className="text-sm text-orange-400/80 mb-6">Intelligent execution platform</p>
+              <ul className="space-y-4">
                 {[
-                  "You describe intent",
-                  "Agents reason and adapt",
-                  "System governs reliability",
-                  "You stay in control"
+                  "You describe the outcome",
+                  "It figures out the process",
+                  "It runs and adapts"
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3 text-white text-base">
                     <CheckCircle className="w-5 h-5 text-orange-500 flex-shrink-0 mt-0.5" />
@@ -493,6 +710,20 @@ export default function MarketingPage() {
               </ul>
             </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+            className="mt-12 text-center"
+          >
+            <p className="text-2xl md:text-3xl text-white font-light">
+              It doesn't help you work.
+              <br />
+              <span className="text-orange-500 font-bold">It works for you.</span>
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -506,7 +737,7 @@ export default function MarketingPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight"
           >
-            How agents <span className="text-orange-500">actually work</span>
+            How it <span className="text-orange-500">actually works</span>
           </motion.h2>
           <p className="text-center text-zinc-500 mb-16 md:mb-20 font-mono text-sm uppercase tracking-wider"></p>
 
@@ -526,28 +757,28 @@ export default function MarketingPage() {
               {[
                 {
                   title: "Understand",
-                  description: "The agent parses your intent and identifies the goal. No rigid rules—just natural understanding.",
+                  description: "Figures out what you're trying to accomplish. No rigid rules, just natural understanding.",
                   icon: Brain,
                   delay: 0,
                   color: "#f97316"
                 },
                 {
                   title: "Connect",
-                  description: "It safely connects to the tools you already use. Secure, permission-based access only.",
+                  description: "Safely accesses the tools you already use. Only what you give permission for.",
                   icon: Link2,
                   delay: 0.2,
                   color: "#3b82f6"
                 },
                 {
-                  title: "Act",
-                  description: "It performs actions or watches for changes. You approve what matters.",
+                  title: "Handle It",
+                  description: "Does the work or watches for changes. You approve important decisions.",
                   icon: Activity,
                   delay: 0.4,
                   color: "#10b981"
                 },
                 {
-                  title: "Improve",
-                  description: "Each run produces insights and improvements. Your agent learns what works.",
+                  title: "Learn",
+                  description: "Gets better over time. Learns your preferences and what matters most.",
                   icon: TrendingUp,
                   delay: 0.6,
                   color: "#8b5cf6"
@@ -643,260 +874,6 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* 6. COST COMPARISON: DEVELOPMENT VS AGENTSPILOT */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-900 border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4 tracking-tight"
-          >
-            Building vs <span className="text-orange-500">Buying</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-center text-zinc-400 mb-12 md:mb-16 max-w-3xl mx-auto text-lg"
-          >
-            See how much you save by using AgentsPilot instead of building custom automation from scratch.
-          </motion.p>
-
-          {/* Use Case Description */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="mb-12 bg-zinc-900/50 border border-zinc-800 p-6 md:p-8"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-orange-500 mb-3 text-center">
-              Use Case: Smart Email Management Agent
-            </h3>
-            <p className="text-center text-zinc-400 mb-6 max-w-3xl mx-auto text-lg">
-              An AI agent that continuously monitors your inbox, identifies urgent client emails, drafts professional replies, and sends you a summary via Slack
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-3 mb-4">
-              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
-                Gmail Integration
-              </span>
-              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
-                Slack Notifications
-              </span>
-              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
-                AI-Powered Analysis
-              </span>
-              <span className="px-4 py-2 bg-zinc-800 border border-zinc-700 text-zinc-300 text-sm font-medium">
-                Automated Responses
-              </span>
-            </div>
-          </motion.div>
-
-          {/* 3-Column Cost Comparison */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
-            {/* Column 1: Manual Approach */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-zinc-900/50 border border-zinc-800 p-6"
-            >
-              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
-                <Users className="w-10 h-10 text-red-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-zinc-50 mb-2">Doing It Manually</h3>
-                <p className="text-sm text-zinc-400">Non-technical user</p>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Check email every hour (8x/day)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Read and prioritize messages</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Draft replies manually</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Send Slack updates</span>
-                </div>
-              </div>
-
-              <div className="border-t border-zinc-800 pt-4">
-                <div className="text-sm text-zinc-400 mb-2">Time Cost</div>
-                <div className="text-3xl font-bold text-red-400 mb-2">2 hrs/day</div>
-                <div className="text-xs text-zinc-400">≈ 40 hours per month</div>
-              </div>
-
-              <div className="mt-4 bg-zinc-800/50 p-4">
-                <div className="text-sm text-zinc-400 mb-1">Monthly Value</div>
-                <div className="text-2xl font-bold text-red-400">$2,000</div>
-                <div className="text-xs text-zinc-400 mt-1">At $50/hour opportunity cost</div>
-              </div>
-            </motion.div>
-
-            {/* Column 2: Developer Services */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-zinc-900/50 border border-zinc-800 p-6"
-            >
-              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
-                <Code className="w-10 h-10 text-yellow-400 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-zinc-50 mb-2">Developer Services</h3>
-                <p className="text-sm text-zinc-400">Hire custom development</p>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Requirements gathering (8 hrs)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Development & testing (60 hrs)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Deployment & training (12 hrs)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-400">
-                  <CheckCircle className="w-4 h-4 text-zinc-600 flex-shrink-0 mt-0.5" />
-                  <span>Monthly maintenance</span>
-                </div>
-              </div>
-
-              <div className="border-t border-zinc-800 pt-4">
-                <div className="text-sm text-zinc-400 mb-2">Initial Development</div>
-                <div className="text-3xl font-bold text-yellow-400 mb-2">$12,000</div>
-                <div className="text-xs text-zinc-400">80 hours @ $150/hr</div>
-              </div>
-
-              <div className="mt-4 bg-zinc-800/50 p-4">
-                <div className="text-sm text-zinc-400 mb-1">+ Monthly Maintenance</div>
-                <div className="text-2xl font-bold text-yellow-400">$500</div>
-                <div className="text-xs text-zinc-400 mt-1">Updates, bug fixes, support</div>
-              </div>
-
-              <div className="mt-4 pt-4 border-t border-zinc-700">
-                <div className="text-xs text-zinc-400 mb-1">First Year Total</div>
-                <div className="text-xl font-bold text-yellow-300">$18,000</div>
-              </div>
-            </motion.div>
-
-            {/* Column 3: AgentsPilot */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-gradient-to-b from-orange-500/10 to-zinc-900/50 border-2 border-orange-500/50 p-6 relative"
-            >
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 py-1 bg-orange-500 text-white text-xs font-bold uppercase tracking-wide">
-                Best Value
-              </div>
-
-              <div className="text-center mb-6 min-h-[180px] flex flex-col justify-center">
-                <Zap className="w-10 h-10 text-orange-500 mx-auto mb-3" />
-                <h3 className="text-xl font-bold text-zinc-50 mb-2">AgentsPilot</h3>
-                <p className="text-sm text-zinc-400">Build it yourself in minutes</p>
-              </div>
-
-              <div className="space-y-4 mb-6">
-                <div className="flex items-start gap-2 text-sm text-zinc-300">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Describe what you want (5 min)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-300">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Connect Gmail & Slack (3 min)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-300">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Test & activate (2 min)</span>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-zinc-300">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Agent runs 24/7 automatically</span>
-                </div>
-              </div>
-
-              <div className="border-t border-orange-500/30 pt-4">
-                <div className="text-sm text-orange-400 mb-2">Setup Time</div>
-                <div className="text-3xl font-bold text-orange-500 mb-2">10 minutes</div>
-                <div className="text-xs text-zinc-300">No coding required</div>
-              </div>
-
-              <div className="mt-4 bg-orange-500/20 border border-orange-500/30 p-4">
-                <div className="text-sm text-orange-400 mb-1">Monthly Cost</div>
-                <div className="text-2xl font-bold text-orange-500">$25</div>
-                <div className="text-xs text-zinc-300 mt-1">Includes hosting, maintenance, updates</div>
-                <div className="text-xs text-green-300 mt-2 font-medium">+ Create multiple agents at this price</div>
-              </div>
-
-              <div className="mt-4 pt-4 border-t border-orange-500/30">
-                <div className="text-xs text-orange-400 mb-1">First Year Total</div>
-                <div className="text-xl font-bold text-orange-500">$300</div>
-              </div>
-
-              <button className="w-full mt-6 px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-colors flex items-center justify-center gap-2">
-                Get Started Free
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </motion.div>
-          </div>
-
-          {/* Savings Summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="bg-gradient-to-r from-green-500/10 to-orange-500/10 border border-green-500/30 p-6 md:p-8"
-          >
-            <div className="text-center mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                AgentsPilot saves you <span className="text-green-400">98%+</span>
-              </h3>
-              <p className="text-zinc-400">Compared to custom development, with zero technical skills required</p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-zinc-900/80 p-6 text-center">
-                <div className="text-sm text-green-400 mb-2 font-medium">vs Manual Work</div>
-                <div className="text-3xl font-bold text-green-400 mb-1">$1,975</div>
-                <div className="text-sm text-green-300">saved per month</div>
-                <div className="text-xs text-zinc-500 mt-2">Reclaim 40 hours monthly</div>
-              </div>
-
-              <div className="bg-zinc-900/80 p-6 text-center">
-                <div className="text-sm text-green-400 mb-2 font-medium">vs Developer Services</div>
-                <div className="text-3xl font-bold text-green-400 mb-1">$17,700</div>
-                <div className="text-sm text-green-300">saved first year</div>
-                <div className="text-xs text-zinc-500 mt-2">98.3% cost reduction</div>
-              </div>
-
-              <div className="bg-zinc-900/80 p-6 text-center">
-                <div className="text-sm text-green-400 mb-2 font-medium">Time to Launch</div>
-                <div className="text-3xl font-bold text-green-400 mb-1">10 min</div>
-                <div className="text-sm text-green-300">vs 2-3 months</div>
-                <div className="text-xs text-zinc-500 mt-2">Start today, not next quarter</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* 7. TRUST & SAFETY */}
       <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
@@ -959,10 +936,10 @@ export default function MarketingPage() {
             className="text-center mb-6 md:mb-8"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 tracking-tight">
-              Agents don't just act <span className="text-orange-500">they think</span>
+              It doesn't just execute <span className="text-orange-500">it notices things</span>
             </h2>
             <p className="text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto font-light">
-              After each run, your agent provides insights: what changed, what matters, what you should consider next.
+              It tells you what changed, what matters, and what you might want to know about.
             </p>
           </motion.div>
 
@@ -1042,7 +1019,7 @@ export default function MarketingPage() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight"
           >
-            Simple <span className="text-orange-500">transparent</span> pricing
+            Simple pricing. <span className="text-orange-500">No subscriptions.</span>
           </motion.h2>
 
           <motion.p
@@ -1050,27 +1027,104 @@ export default function MarketingPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-center text-zinc-400 mb-12 md:mb-16 max-w-2xl mx-auto"
+            className="text-center text-zinc-400 mb-4 max-w-2xl mx-auto text-lg"
           >
-            Pay only for what you use. No fixed tiers. Calculate your exact needs with our Smart Fuel Auto-Plan.
+            Start free. Pay as you go based on how your agents are created and how they run.
           </motion.p>
-
-          <div className="max-w-4xl mx-auto">
-            <PilotCreditCalculator
-              showSubscribeButton={true}
-              onSubscribe={handleSubscribe}
-            />
-          </div>
 
           <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-center text-zinc-500 mt-8 text-sm"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            className="text-center text-zinc-500 mb-12 md:mb-16 max-w-3xl mx-auto"
           >
-            Start with 10,417 free Pilot Credits. No credit card required.
+            AgentPilot uses AI to create your agents and run them on your data.
+            You only pay for actual usage. Nothing more.
           </motion.p>
+
+          {/* How Pricing Works */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            className="mb-12 space-y-6 max-w-4xl mx-auto"
+          >
+            <h3 className="text-2xl md:text-3xl font-bold text-center mb-8 text-orange-500">
+              How Pricing Works
+            </h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Step 1 */}
+              <div className="bg-zinc-900/50 border border-zinc-800 p-6">
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 border-2 border-orange-500 flex items-center justify-center mb-4">
+                  <span className="text-lg font-bold text-orange-500">1</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-3">Create Your Agent</h4>
+                <p className="text-zinc-400 mb-4 text-sm">
+                  When you describe what you want, AgentPilot uses AI to build your agent.
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Small one-time cost (usually just a few cents)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Only when you create or update an agent</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Step 2 */}
+              <div className="bg-zinc-900/50 border border-zinc-800 p-6">
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 border-2 border-orange-500 flex items-center justify-center mb-4">
+                  <span className="text-lg font-bold text-orange-500">2</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-3">Run Your Agent</h4>
+                <p className="text-zinc-400 mb-4 text-sm">
+                  Each time your agent works reading data, analyzing, taking action it uses credits.
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Cost depends on the task</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Simple tasks cost very little</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Step 3 */}
+              <div className="bg-zinc-900/50 border border-zinc-800 p-6">
+                <div className="w-10 h-10 rounded-full bg-orange-500/20 border-2 border-orange-500 flex items-center justify-center mb-4">
+                  <span className="text-lg font-bold text-orange-500">3</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-3">You Stay in Control</h4>
+                <p className="text-zinc-400 mb-4 text-sm">
+                  Full transparency and control over every run.
+                </p>
+                <ul className="space-y-2 text-sm text-zinc-400">
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>See estimated cost before running</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>Pause or limit usage anytime</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                    <span>No hidden charges</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </section>
 
@@ -1084,25 +1138,43 @@ export default function MarketingPage() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="space-y-6 md:space-y-8"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Stop managing work.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+              Stop letting things
               <br />
-              <span className="text-orange-500">Start delegating it.</span>
+              fall through the cracks.
             </h2>
+
+            <p className="text-xl md:text-2xl text-zinc-400 font-light">
+              Get everything handled <span className="text-orange-500 font-semibold">starting today.</span>
+            </p>
 
             <div className="max-w-2xl mx-auto">
               <div className="flex flex-col md:flex-row gap-4">
                 <input
                   type="text"
-                  placeholder="What do you want an agent to handle for you?"
+                  placeholder="What keeps slipping through for you?"
                   className="flex-1 px-6 py-4 bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 text-base focus:outline-none focus:border-orange-500 transition-colors"
                 />
-                <button className="px-8 py-4 bg-orange-500 hover:bg-orange-600 font-semibold transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
-                  Create my first agent
+                <button className="px-8 py-4 bg-orange-500 hover:bg-orange-600 font-semibold transition-colors flex items-center justify-center gap-2 whitespace-nowrap text-white">
+                  Get It Handled (Free)
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
+
+              <p className="text-sm text-zinc-600 mt-4">
+                No credit card required. Start in 2 minutes.
+              </p>
             </div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 }}
+              className="text-base md:text-lg text-zinc-500 font-mono mt-8"
+            >
+              "If it keeps slipping through, we can handle it."
+            </motion.p>
           </motion.div>
         </div>
       </section>

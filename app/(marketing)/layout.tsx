@@ -42,8 +42,8 @@ function NewsletterForm() {
 
   return (
     <div>
-      <h4 className="font-semibold text-orange-400 mb-4">Stay Updated</h4>
-      <p className="text-gray-400 text-sm mb-4">Subscribe to our newsletter for updates and news.</p>
+      <h4 className="font-semibold text-orange-400 mb-4">Never Miss Updates</h4>
+      <p className="text-gray-400 text-sm mb-4">Get tips on handling more and missing less.</p>
       <form onSubmit={handleSubmit} className="space-y-2">
         <input
           type="email"
@@ -98,17 +98,6 @@ export default function MarketingLayout({
 }) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isFeaturesDropdownOpen, setIsFeaturesDropdownOpen] = useState(false)
-  const [isMobileFeaturesOpen, setIsMobileFeaturesOpen] = useState(false)
-
-  const handleFeatureClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault()
-    const href = e.currentTarget.href
-    setIsFeaturesDropdownOpen(false)
-    setTimeout(() => {
-      window.location.href = href
-    }, 350)
-  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -156,138 +145,10 @@ export default function MarketingLayout({
 
             {/* Navigation Links - Futuristic pill design */}
             <div className="hidden md:flex items-center gap-1 bg-zinc-900/50 backdrop-blur-md rounded-full p-1 border border-white/10">
-              {/* Features Dropdown */}
-              <div
-                className="relative"
-                onMouseEnter={() => setIsFeaturesDropdownOpen(true)}
-                onMouseLeave={() => setIsFeaturesDropdownOpen(false)}
-              >
-                <button className="relative px-4 py-2 text-sm text-slate-300 hover:text-white rounded-full transition-all duration-300 group overflow-hidden flex items-center gap-1">
-                  <span className="relative z-10">Features</span>
-                  <ChevronDown className={`w-3 h-3 relative z-10 transition-transform duration-300 ${isFeaturesDropdownOpen ? 'rotate-180' : ''}`} />
-                  <div className="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </button>
-
-                {/* Dropdown Menu */}
-                <AnimatePresence>
-                  {isFeaturesDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="absolute top-full left-0 mt-2 w-[750px] bg-zinc-900 backdrop-blur-xl border border-zinc-700 shadow-2xl shadow-orange-500/10 p-6 z-50"
-                    >
-                    <div className="grid grid-cols-3 gap-6">
-                      {/* AI Core & Integrations */}
-                      <div>
-                        <div className="text-xs font-semibold text-orange-400 mb-3 uppercase tracking-wider">AI Core</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'AI Core').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-
-                        <div className="text-xs font-semibold text-orange-400 mb-3 mt-6 uppercase tracking-wider">Integrations</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'Integrations').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Operations, Security & UX */}
-                      <div>
-                        <div className="text-xs font-semibold text-orange-400 mb-3 uppercase tracking-wider">Operations</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'Operations').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-
-                        <div className="text-xs font-semibold text-orange-400 mb-3 mt-6 uppercase tracking-wider">Security</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'Security').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-
-                        <div className="text-xs font-semibold text-orange-400 mb-3 mt-6 uppercase tracking-wider">User Experience</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'User Experience').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Use Cases */}
-                      <div>
-                        <div className="text-xs font-semibold text-orange-400 mb-3 uppercase tracking-wider">Use Cases</div>
-                        <div className="space-y-2">
-                          {featuresMenuItems.filter(item => item.category === 'Use Cases').map((item, idx) => (
-                            <Link
-                              key={idx}
-                              href={item.href}
-                              onClick={handleFeatureClick}
-                              className="block px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                            >
-                              {item.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* View All Features Link */}
-                    <div className="mt-6 pt-4 border-t border-white/10">
-                      <Link
-                        href="/features"
-                        onClick={handleFeatureClick}
-                        className="block text-center px-4 py-2 bg-orange-500/20 text-orange-300 rounded-lg hover:bg-orange-500/30 transition-all duration-200 text-sm font-medium"
-                      >
-                        View All Features →
-                      </Link>
-                    </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
+              <Link href="/" className="relative px-4 py-2 text-sm text-slate-300 hover:text-white rounded-full transition-all duration-300 group overflow-hidden">
+                <span className="relative z-10">Home</span>
+                <div className="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </Link>
               <Link href="/pricing" className="relative px-4 py-2 text-sm text-slate-300 hover:text-white rounded-full transition-all duration-300 group overflow-hidden">
                 <span className="relative z-10">Pricing</span>
                 <div className="absolute inset-0 bg-orange-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -312,7 +173,7 @@ export default function MarketingLayout({
                 href="/signup"
                 className="px-3 py-1.5 text-sm bg-orange-500 text-white hover:bg-orange-600 hover:shadow-lg hover:shadow-orange-500/50 transition-all duration-200 font-medium"
               >
-                Get Started
+                Get Something Handled
               </Link>
             </div>
 
@@ -341,54 +202,13 @@ export default function MarketingLayout({
           }`}
         >
           <div className="px-4 pt-2 pb-6 space-y-3 bg-zinc-900/95 backdrop-blur-md border-t border-white/10">
-            {/* Features with submenu */}
-            <div>
-              <button
-                onClick={() => setIsMobileFeaturesOpen(!isMobileFeaturesOpen)}
-                className="w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-              >
-                <span>Features</span>
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isMobileFeaturesOpen ? 'rotate-180' : ''}`} />
-              </button>
-
-              {/* Features Submenu */}
-              <AnimatePresence>
-                {isMobileFeaturesOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="ml-4 mt-2 space-y-1 border-l-2 border-orange-500/30 pl-4 overflow-hidden"
-                  >
-                  {featuresMenuItems.map((item, idx) => (
-                    <Link
-                      key={idx}
-                      href={item.href}
-                      className="block px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
-                      onClick={() => {
-                        setIsMobileMenuOpen(false)
-                        setIsMobileFeaturesOpen(false)
-                      }}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
-                  <Link
-                    href="/features"
-                    className="block px-3 py-2 text-sm text-orange-400 hover:text-orange-300 hover:bg-white/5 rounded-lg transition-all duration-200 font-medium"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false)
-                      setIsMobileFeaturesOpen(false)
-                    }}
-                  >
-                    View All Features →
-                  </Link>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
+            <Link
+              href="/"
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
             <Link
               href="/pricing"
               className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200"
@@ -425,7 +245,7 @@ export default function MarketingLayout({
                 className="block px-4 py-3 text-center bg-orange-500 text-white hover:bg-orange-600 transition-all duration-200"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Get Started
+                Get Something Handled
               </Link>
             </div>
           </div>
@@ -450,14 +270,13 @@ export default function MarketingLayout({
                     height={80}
                   />
                 </div>
-                <p className="text-gray-400">The professional AI automation platform.</p>
+                <p className="text-gray-400">Stop letting things slip through. Get work handled automatically.</p>
               </div>
               <div>
                 <h4 className="font-semibold text-orange-400 mb-4">Product</h4>
                 <ul className="space-y-2 text-sm">
-                  <li><Link href="/features" className="hover:text-white transition-colors">Features</Link></li>
                   <li><Link href="/pricing" className="hover:text-white transition-colors">Pricing</Link></li>
-                  <li><Link href="/features#enterprise-integrations" className="hover:text-white transition-colors">Integrations</Link></li>
+                  <li><Link href="/signup" className="hover:text-white transition-colors">Get Something Handled</Link></li>
                 </ul>
               </div>
               <div>
@@ -465,14 +284,13 @@ export default function MarketingLayout({
                 <ul className="space-y-2 text-sm">
                   <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
                   <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-                  <li><Link href="/signup" className="hover:text-white transition-colors">Get Started</Link></li>
                 </ul>
               </div>
               {/* Newsletter Signup */}
               <NewsletterForm />
             </div>
             <div className="border-t border-gray-800 mt-6 pt-6 text-center text-xs text-gray-400">
-              <p>&copy; 2025 AgentsPilot. All rights reserved. • Privacy Policy • Terms of Service</p>
+              <p>&copy; 2026 AgentsPilot. All rights reserved. • Privacy Policy • Terms of Service</p>
             </div>
           </div>
         </footer>

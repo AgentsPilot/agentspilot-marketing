@@ -236,7 +236,7 @@ const UseCasesPage = () => {
             </h1>
 
             <p className="text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              See how AgentsPilot powers automations across every industry — no coding needed, just natural language.
+              See how AgentsPilot powers automations across every industry. No coding needed, just natural language.
             </p>
           </motion.div>
         </div>

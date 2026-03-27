@@ -39,10 +39,10 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <span className="text-orange-400">
-                The Future of Work
+                Stop Letting Things
               </span>
               <br />
-              <span className="text-white">Is Personal AI</span>
+              <span className="text-white">Slip Through The Cracks</span>
             </motion.h1>
 
             <motion.p
@@ -51,9 +51,9 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-base md:text-lg text-slate-300 max-w-4xl mx-auto mb-8 leading-relaxed"
             >
-              We're building the world's first AI Workforce for everyone intelligent agents that understand your intentand execute your vision across all your tools, without a single line of code.
+              We're building a way for everyone to get their work handled automatically. Just describe what keeps slipping, and it gets done.
             </motion.p>
-            
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -64,7 +64,7 @@ const AboutPage = () => {
                 href="/signup"
                 className="group px-8 py-4 bg-orange-500 hover:bg-orange-600 font-bold text-lg hover:shadow-2xl hover:shadow-orange-500/50 transition flex items-center gap-2"
               >
-                See It In Action
+                Get Something Handled
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
@@ -84,11 +84,11 @@ const AboutPage = () => {
           >
             <h2 className="text-3xl md:text-4xl font-black mb-4">
               <span className="text-orange-400">
-                Reimagining Automation
+                You're Not Falling Behind
               </span>
             </h2>
             <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-              Today's automation tools are complex, technical, and built for engineers. We believe everyone deserves intelligent automation.
+              You're just doing too much manually. Things slip through. It's exhausting keeping track.
             </p>
           </motion.div>
 
@@ -114,21 +114,21 @@ const AboutPage = () => {
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-red-400/30 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                      Professionals spend <span className="text-white font-semibold">hours on repetitive digital tasks</span> copying data between tools, sending routine emails, organizing files, tracking deadlines.
+                      People spend <span className="text-white font-semibold">hours on work that should take minutes</span>. Important emails don't get answered. Follow-ups get forgotten. Deadlines slip by.
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-red-400/30 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                      Existing automation requires <span className="text-white font-semibold">technical setup, complex workflows, and constant maintenance</span>. Most people want outcomes, not setup screens.
+                      Existing tools require <span className="text-white font-semibold">technical setup, complex workflows, and constant maintenance</span>. Most people just want things handled, not another tool to learn.
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-red-400/30 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                      They want to <span className="text-white font-semibold">describe what they need and see it work</span> instantly.
+                      They want to <span className="text-white font-semibold">describe what keeps slipping and see it handled</span> automatically.
                     </p>
                   </div>
                 </div>
@@ -156,21 +156,21 @@ const AboutPage = () => {
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-orange-400/50 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-                      AgentsPilot <span className="text-orange-400 font-semibold">transforms natural language into intelligent agents</span>. Simply describe your goal, and our AI understands your intent, designs the workflow, and executes it seamlessly.
+                      AgentsPilot <span className="text-orange-400 font-semibold">understands what you need from how you describe it</span>. Simply tell us what keeps slipping, and we figure out how to handle it.
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-orange-400/50 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-                      <span className="text-white font-semibold">No scripts. No complex integrations. No technical knowledge required.</span>
+                      <span className="text-white font-semibold">No technical setup. No complex configuration. No learning curve.</span>
                     </p>
                   </div>
 
                   <div className="flex gap-3">
                     <div className="w-1.5 bg-orange-400/50 flex-shrink-0"></div>
                     <p className="text-base md:text-lg text-slate-200 leading-relaxed">
-                      Just <span className="text-orange-400 font-semibold">human ideas becoming automated reality</span> in seconds.
+                      Just <span className="text-orange-400 font-semibold">describe the problem and it gets handled</span> from then on.
                     </p>
                   </div>
                 </div>
@@ -181,7 +181,7 @@ const AboutPage = () => {
                     className="group px-6 py-3.5 bg-orange-500 hover:bg-orange-600 font-bold text-white transition-all duration-300 hover:shadow-2xl hover:shadow-orange-500/50 flex items-center justify-center gap-2"
                   >
                     <Sparkles className="w-5 h-5" />
-                    Start Building Free
+                    Try It Free
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </div>
@@ -207,7 +207,7 @@ const AboutPage = () => {
               </span>
             </h2>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-              From idea to automation in under two minutes
+              From problem to handled in minutes
             </p>
           </motion.div>
 
@@ -215,29 +215,29 @@ const AboutPage = () => {
             {[
               {
                 step: "01",
-                title: "Type Your Goal",
-                description: "Describe what you want in plain English. No technical knowledge needed.",
+                title: "Tell Us What's Slipping",
+                description: "Describe what you need in plain English. No technical knowledge needed.",
                 icon: <Lightbulb className="w-8 h-8 text-orange-400" />,
                 color: "blue"
               },
               {
                 step: "02",
-                title: "AI Clarifies Intent",
-                description: "Our intelligent system asks clarifying questions to understand exactly what you need.",
+                title: "We Ask Simple Questions",
+                description: "We ask a few quick questions to understand exactly what you need handled.",
                 icon: <Brain className="w-8 h-8 text-orange-400" />,
                 color: "purple"
               },
               {
                 step: "03",
-                title: "Instant Build",
-                description: "AgentsPilot designs the workflow, connects tools, and configures everything automatically.",
+                title: "We Handle The Setup",
+                description: "We figure out the workflow, connect your tools, and configure everything automatically.",
                 icon: <Rocket className="w-8 h-8 text-orange-400" />,
                 color: "pink"
               },
               {
                 step: "04",
-                title: "Your AI Pilot Runs It",
-                description: "Your personal agent executes tasks on demand, on schedule, or triggered by events.",
+                title: "It Runs By Itself",
+                description: "It handles itself on demand, on schedule, or triggered by events. You never think about it again.",
                 icon: <Heart className="w-8 h-8 text-orange-400" />,
                 color: "green"
               }
@@ -290,22 +290,22 @@ const AboutPage = () => {
             <div className="grid md:grid-cols-2 gap-8 text-left max-w-4xl mx-auto">
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">AI Should Work for You</h3>
-                  <p className="text-slate-300">Not overwhelm you with complexity. Intelligence should amplify human capability, not replace human judgment.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Things Shouldn't Slip Through</h3>
+                  <p className="text-slate-300">Important work shouldn't depend on your memory. It should just get handled.</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Human Ideas First</h3>
-                  <p className="text-slate-300">The best automations start with human creativity and intent, not technical specifications.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Describe The Problem, Not The Solution</h3>
+                  <p className="text-slate-300">The best way to get things handled starts with describing what keeps slipping, not building technical workflows.</p>
                 </div>
               </div>
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Everyone Deserves AI Power</h3>
-                  <p className="text-slate-300">Intelligent automation shouldn't require engineering expertise. It should be as natural as conversation.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Everyone Deserves This</h3>
+                  <p className="text-slate-300">Getting work handled shouldn't require technical expertise. It should be as natural as asking for help.</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Trust Through Transparency</h3>
-                  <p className="text-slate-300">You should always understand what your agents do, how they work, and maintain full control.</p>
+                  <h3 className="text-xl font-bold text-white mb-2">Trust Through Control</h3>
+                  <p className="text-slate-300">You should always see what's happening, change it when you want, and maintain full control.</p>
                 </div>
               </div>
             </div>
@@ -331,21 +331,20 @@ const AboutPage = () => {
 
               <div className="space-y-6 text-slate-300 max-w-4xl mx-auto text-center">
                 <p className="text-xl leading-relaxed">
-                  AgentsPilot was born from a simple frustration: watching brilliant professionals
-                  waste hours on repetitive digital tasks that should be automated.
+                  AgentsPilot was born from a simple frustration: watching talented people
+                  waste hours on work that should take minutes because things kept slipping through.
                 </p>
                 <p className="text-xl leading-relaxed">
-                  We experienced firsthand how existing automation tools failed
-                  non-technical users. AgentsPilot represents a fundamental shift in how we think about AI and work.
+                  We experienced firsthand how existing tools failed to help.
+                  AgentsPilot represents a fundamental shift: instead of building workflows, you describe what keeps slipping.
                 </p>
                 <p className="text-xl leading-relaxed">
-                  We believe the future isn't about replacing humans with AI, it's about giving 
-                  every professional their own intelligent pilot to handle the mundane, 
-                  so they can focus on what truly matters.
+                  We believe work shouldn't depend on perfect memory or constant vigilance.
+                  Important things should get handled automatically, so you can focus on what truly matters.
                 </p>
                 <p className="text-xl leading-relaxed">
-                  Every design decision prioritizes simplicity, trust, and human empowerment. 
-                  Because AI should make work more human, not less.
+                  Every design decision prioritizes simplicity, control, and getting things handled.
+                  Because work should feel lighter, not heavier.
                 </p>
               </div>
             </div>
@@ -369,25 +368,25 @@ const AboutPage = () => {
               </span>
             </h2>
             <p className="text-lg text-slate-400 max-w-3xl mx-auto">
-              A world where every professional has a personal AI workforce
+              A world where nothing important slips through for anyone
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                title: "Personal AI Workforce",
-                description: "Every professional will have intelligent agents handling routine tasks, freeing humans for creative and strategic work.",
+                title: "Everything Gets Handled",
+                description: "Every person will have work that handles itself. Follow-ups sent, emails answered, deadlines met. Not because they remembered, but because it's automatic.",
                 icon: <Bot className="w-12 h-12 text-orange-400" />
               },
               {
-                title: "Cross-Tool Collaboration",
-                description: "Agents will seamlessly coordinate across all your tools Gmail, Slack, Notion, CRM creating unified workflows.",
+                title: "Works With What You Use",
+                description: "It connects to everything you already use. Email, calendar, spreadsheets, all your tools working together to make sure nothing slips.",
                 icon: <Link2 className="w-12 h-12 text-orange-400" />
               },
               {
-                title: "Human + AI Orchestration",
-                description: "The best outcomes come from humans setting the vision and AI handling execution, creating perfect collaboration.",
+                title: "You Focus On What Matters",
+                description: "The best outcomes come from focusing on creative work and strategic thinking, while routine things handle themselves.",
                 icon: <Music className="w-12 h-12 text-orange-400" />
               }
             ].map((item, index) => (
@@ -424,7 +423,7 @@ const AboutPage = () => {
                 </span>
               </h2>
               <p className="text-xl md:text-2xl text-white font-light leading-relaxed">
-                To make intelligent automation accessible to everyone one natural-language agent at a time.
+                To make sure nothing important slips through the cracks for anyone ever again.
               </p>
             </div>
           </motion.div>
@@ -442,22 +441,21 @@ const AboutPage = () => {
           >
             <div className="bg-zinc-900/95 backdrop-blur-2xl p-6 md:p-12 lg:p-16 border border-zinc-800 text-center">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-black mb-4 md:mb-6">
-                Ready to Meet
+                Ready to Stop Letting
                 <br />
                 <span className="text-orange-400">
-                  Your AI Pilot?
+                  Things Slip Through?
                 </span>
               </h2>
               <p className="text-sm md:text-base lg:text-lg text-slate-300 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed">
-                Join thousands of professionals who've discovered the power of natural-language automation.
-                Build your first agent in under 2 minutes.
+                Tell us what keeps slipping. We'll make sure it gets handled from now on.
               </p>
 
               <Link
                 href="/signup"
                 className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-orange-500 hover:bg-orange-600 font-bold text-base md:text-lg hover:shadow-2xl hover:shadow-orange-500/50 transition"
               >
-                Create Your First Agent
+                Get Something Handled (Free)
                 <ArrowRight className="w-5 h-5" />
               </Link>
 
