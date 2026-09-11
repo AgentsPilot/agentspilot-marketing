@@ -15,6 +15,30 @@ export default function AuthCallbackPage() {
         console.log('=== AUTH CALLBACK START ===');
         setStatus('verifying');
 
+        /*
+         * A password-recovery link that lands here is not a sign-in.
+         *
+         * The email template used to point recovery at this page, and those
+         * links are still in inboxes. Left alone, the code below reads the
+         * session Supabase just established from the fragment, decides the
+         * email is verified, and forwards the user into the main app — signed
+         * in, and never shown the password form they clicked the link for.
+         *
+         * `/reset-password` is the page that asks for the new password, and it
+         * needs the credentials it was sent with, so the fragment and query
+         * travel with the redirect.
+         */
+        const hash = window.location.hash.replace(/^#/, '');
+        const isRecovery =
+          new URLSearchParams(hash).get('type') === 'recovery' ||
+          new URLSearchParams(window.location.search).get('type') === 'recovery';
+
+        if (isRecovery) {
+          console.log('Recovery link — handing off to /reset-password');
+          window.location.replace(`/reset-password${window.location.search}${window.location.hash}`);
+          return;
+        }
+
         const { data, error } = await supabase.auth.getSession();
 
         console.log('Session data:', data);

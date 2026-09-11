@@ -44,20 +44,28 @@ Add ALL these URLs (both development and production):
 ```
 http://localhost:3000/auth/callback
 http://localhost:3001/auth/callback
+http://localhost:3001/reset-password
 ```
 
 **Production URLs** (update when deploying):
 ```
 https://app.agentspilot.ai/auth/callback
 https://agentspilot.ai/auth/callback
+https://agentspilot.ai/reset-password
 ```
 
 **Vercel Preview URLs** (for testing deployments):
 ```
 https://*.vercel.app/auth/callback
+https://*.vercel.app/reset-password
 ```
 
 > **Important**: The wildcard `*.vercel.app` allows all Vercel preview deployments to work
+
+> **Password recovery**: `resetPasswordForEmail` on the login page passes
+> `redirectTo: ${origin}/reset-password`. If that exact URL is not in the allow-list,
+> Supabase silently falls back to the Site URL and the recovery link drops the user on
+> the homepage instead of the reset form.
 
 ---
 
@@ -82,7 +90,7 @@ Update the redirect URL to point to marketing site:
 ```html
 <h2>Reset your password</h2>
 <p>Follow this link to reset your password:</p>
-<p><a href="{{ .SiteURL }}/auth/callback?token_hash={{ .TokenHash }}&type=recovery">Reset password</a></p>
+<p><a href="{{ .SiteURL }}/reset-password?token_hash={{ .TokenHash }}&type=recovery">Reset password</a></p>
 ```
 
 ---
