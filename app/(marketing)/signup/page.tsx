@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { handOffToApp } from '@/lib/authHandoff';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { motion } from 'framer-motion';
@@ -285,7 +286,6 @@ export default function SignupPage() {
       }
 
       // Handle success based on whether email confirmation is required
-      const mainAppUrl = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
 
       if (!session) {
         // Email confirmation required - redirect to home page
@@ -299,7 +299,9 @@ export default function SignupPage() {
         // the app, so this sent every new signup to a 404.
         setSuccessMessage('Account created successfully! Redirecting to setup...');
         setTimeout(() => {
-          window.location.href = `${mainAppUrl}/onboarding-chat#access_token=${session.access_token}&refresh_token=${session.refresh_token}`;
+          // A single-use code, not the refresh token in a url. See
+          // `lib/authHandoff`.
+          void handOffToApp(session);
         }, 1500);
       }
     } catch (error) {

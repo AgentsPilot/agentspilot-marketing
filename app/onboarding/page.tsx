@@ -5,6 +5,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { handOffToApp } from '@/lib/authHandoff';
 import { supabase } from '@/lib/supabaseClient';
 import { useRouter } from 'next/navigation';
 
@@ -27,9 +28,9 @@ export default function OnboardingRedirect() {
         // `/onboarding-chat`, not `/onboarding`: the latter is not a route in
         // the app. It also settles where to go next — an existing business is
         // pushed straight on to `/business-os`.
-        const mainAppUrl = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
-        console.log('Redirecting to main app onboarding...');
-        window.location.href = `${mainAppUrl}/onboarding-chat#access_token=${session.access_token}&refresh_token=${session.refresh_token}`;
+        // Hands the session over as a single-use code rather than putting
+        // the refresh token in the url. See `lib/authHandoff`.
+        await handOffToApp(session);
       } catch (err) {
         console.error('Error during redirect:', err);
         router.push('/login');

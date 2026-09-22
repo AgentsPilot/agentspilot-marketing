@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { handOffToApp } from '@/lib/authHandoff';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -136,12 +137,8 @@ export default function AuthCallbackPage() {
 
         setStatus('redirecting');
 
-        // Redirect to main app (not marketing site)
-        const mainAppUrl = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
-
-        // Pass session tokens to main app via URL hash
-        const accessToken = data.session?.access_token;
-        const refreshToken = data.session?.refresh_token;
+        // Redirect to the app. The session is handed over as a single-use
+        // code rather than as tokens in the url — see `lib/authHandoff`.
 
         /*
          * One destination, and the app decides where it leads.
@@ -156,9 +153,8 @@ export default function AuthCallbackPage() {
          * exist in the app. The real ones are `/onboarding-chat` and
          * `/onboarding-build`.
          */
-        console.log('Redirecting to main app onboarding...');
         setTimeout(() => {
-          window.location.href = `${mainAppUrl}/onboarding-chat#access_token=${accessToken}&refresh_token=${refreshToken}`;
+          void handOffToApp(data.session);
         }, 1000);
       } catch (err) {
         console.error('Unexpected error in auth callback:', err);

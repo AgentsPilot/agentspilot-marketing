@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { handOffToApp } from '@/lib/authHandoff';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { motion } from 'framer-motion';
@@ -130,10 +131,9 @@ export default function LoginPage() {
          * source — `user_metadata` is a copy that nothing keeps in step, so a
          * user who finished onboarding could still be told they had not.
          */
-        const session = data.session;
-        const mainAppUrl = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
-
-        window.location.href = `${mainAppUrl}/onboarding-chat#access_token=${session?.access_token}&refresh_token=${session?.refresh_token}`;
+        // Hands the session over as a single-use code rather than putting
+        // the refresh token in the url. See `lib/authHandoff`.
+        await handOffToApp(data.session);
       }
     } catch (error) {
       setErrorMessage('An unexpected error occurred. Please try again.');

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { mainAppUrl } from '@/lib/authHandoff';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import {
@@ -150,8 +151,9 @@ export default function PromptIdeasPage() {
    * other hand-off to the app on this site works.
    */
   const goToApp = () => {
-    const mainAppUrl = process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
-    window.location.href = `${mainAppUrl}/business-os`;
+    // No tokens here — a plain navigation — but the app's address still comes
+    // from one place rather than from a call site.
+    window.location.href = `${mainAppUrl()}/business-os`;
   };
 
   const handleSkip = goToApp;
