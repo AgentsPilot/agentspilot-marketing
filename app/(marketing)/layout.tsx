@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
+import { Logo } from '@/components/brand/Logo';
 import { useEffect, useState } from 'react'
 import { X, Menu, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -133,13 +133,10 @@ export default function MarketingLayout({
           <div className="flex justify-between items-center h-24">
             {/* Logo */}
             <Link href="/" className="flex items-center group relative">
-              <Image
-                src="/images/AgentPilot_Logo.png"
-                alt="AgentsPilots"
-                width={150}
-                height={150}
-                className="group-hover:scale-105 transition-transform duration-200"
+              <Logo
+                placement="header"
                 priority
+                className="group-hover:scale-105 transition-transform duration-200"
               />
             </Link>
 
@@ -263,12 +260,8 @@ export default function MarketingLayout({
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
               <div>
                 <div className="flex items-center mb-4">
-                  <Image
-                    src="/images/AgentPilot_Logo.png"
-                    alt="AgentsPilots"
-                    width={80}
-                    height={80}
-                  />
+                  {/* Dark by default — the whole site is. See Logo.tsx. */}
+                  <Logo placement="footer" />
                 </div>
                 <p className="text-gray-400">Stop letting things slip through. Get work handled automatically.</p>
               </div>

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "brand:verify": "node scripts/brand/verify.js",
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
