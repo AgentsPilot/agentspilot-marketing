@@ -2,22 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────────────────────────────────────────────────────
+ * ⚠️ THESE ARE RGB CHANNELS, NOT HEX. `--ink: 20 43 54`, never `#142B36`.
+ *
+ * Tailwind cannot apply an opacity modifier to a colour that is already a
+ * complete value. With `ink: "var(--ink)"` holding a hex, `bg-ink/70` compiles
+ * to NOTHING AT ALL — no rule is emitted, the class sits in the HTML, and the
+ * element simply has no background. That is how a dark header shipped with no
+ * dark in it: `bg-night/80` was in the markup and absent from the stylesheet.
+ *
+ * Channels plus `rgb(var(--x) / <alpha-value>)` in `tailwind.config.ts` make
+ * every modifier work. The cost is that raw CSS must write `rgb(var(--ink))`
+ * rather than `var(--ink)` — see the `body` rule and the hero's gradient.
+ *
+ * `--background` and `--foreground` below stay HEX on purpose: they predate
+ * this file, are read directly by other pages, and take no modifier.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * Marketing design tokens.
+ *
+ * WHY THESE EXACT VALUES
+ *
+ * `--brand` is the orange IN THE LOGO, sampled from
+ * `public/images/brand/wordmark.png`: its saturated pixels cluster at
+ * #EC7C30-#F48438, hue 24.3deg. It is the only authoritative brand orange we
+ * have, so everything else is derived from it rather than picked.
+ *
+ * `--accent` exists because `--brand` CANNOT CARRY TEXT. #F08034 on white is
+ * 2.68:1, which fails WCAG AA for body copy (4.5) and even large text (3.0).
+ * #A8541C is the same hue (24.0deg) darkened until it passes: 5.32:1 on white
+ * and 4.96:1 on the canvas. So:
+ *
+ *   --brand   fills, the mark, highlights on dark      never small text
+ *   --accent  text, links, buttons, focus rings        AA everywhere
+ *
+ * Every pair below was measured, not estimated. Changing one means
+ * re-measuring it; the figures in the comments are the record.
+ * ─────────────────────────────────────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Kept: the rest of the app reads these two. */
+  --background: #F6F7F9;
+  --foreground: #142B36;
+
+  --canvas: 246 247 249;
+  --surface: 255 255 255;
+  --sunk: 239 241 244;
+
+  --ink: 20 43 54;   /* 13.7:1 on canvas */
+  --ink-2: 85 102 111; /*  5.6:1 on canvas */
+  --ink-3: 122 138 148; /*  3.3:1 on canvas — large text and borders only */
+
+  --line: 227 231 235;
+  --line-2: 211 218 223;
+
+  --brand: 240 128 52;        /* the logo's own orange */
+  --accent: 168 84 28;       /* 5.0:1 on canvas */
+  --accent-hover: 142 70 21;
+  --accent-soft: 252 238 231;
+
+  --pos: 28 107 71;          /* 6.0:1 on canvas */
+  --pos-soft: 230 244 236;
+
+  /* The two deliberately dark sections. Tone is the BACKGROUND, not the ink. */
+  --night: 15 34 43;
+  --night-2: 22 48 59;
+  /*
+   * The bridge band, which must read as a DIFFERENT ground from `--night`.
+   *
+   * `--night-2` was tried first and is only a 1.18 luminance step from
+   * `--night` — on screen the two are the same colour, which is exactly the
+   * problem it was meant to fix. 1.33 separates. `--night-ink` on it is still
+   * 10.6:1.
+   */
+  /*
+   * Success, ON A DARK GROUND.
+   *
+   * `--pos` (#1C6B47) is tuned for the light canvas, where it is 6.0:1. On
+   * `--night` it collapses to **2.53:1** and fails AA — which is what the
+   * footer's "Subscribed" message was about to ship as. 7.3:1 here.
+   */
+  --pos-bright: 92 192 142;
+
+  --night-3: 25 57 69;
+
+  --night-line: 36 64 76;
+  --night-ink: 233 240 243;    /* 14.2:1 on night */
+  --night-ink-2: 157 176 185;  /*  7.3:1 on night */
+
+  --note-1: 255 246 220;
+  --note-2: 255 232 220;
+  --note-3: 228 240 246;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+ * No dark-scheme override for the marketing pages, deliberately.
+ *
+ * This is a committed light design: the hero product window, the paper-slip
+ * pile and the bento tiles all depend on a light ground, and two sections are
+ * dark ON PURPOSE for contrast. A `prefers-color-scheme` inversion would fight
+ * that rather than serve it. The page therefore paints every colour explicitly
+ * and holds on either host ground.
+ *
+ * The previous `--background: #0a0a0a` dark block was removed for the same
+ * reason: it changed only two variables, so a visitor in dark mode got dark
+ * page chrome behind light components.
+ */
+
+/*
+ * Anchors must clear the fixed header.
+ *
+ * The nav points at sections on the homepage (`/#pricing`, `/#talk-to-us`).
+ * Without this the browser scrolls the section's top edge to the top of the
+ * VIEWPORT, which is underneath a 64-72px bar — so the heading you clicked for
+ * is the one thing hidden. The extra 24px stops it sitting flush against the
+ * bar's underside.
+ */
+html {
+  scroll-padding-top: calc(72px + 24px);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: rgb(var(--canvas));
+  color: rgb(var(--ink));
+  font-family: var(--font-sans, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif);
+  font-feature-settings: "ss01", "cv11";
 }
 
 /* Futuristic gradient animation */
@@ -100,4 +215,34 @@ body {
 
 .scrollbar-thin:hover::-webkit-scrollbar-thumb {
   opacity: 1;
+}
+/*
+ * An entrance that does not depend on JavaScript.
+ *
+ * The auth forms used framer-motion's `initial={{ opacity: 0, x: 40 }}`, which
+ * server-renders the card as `style="opacity:0;transform:translateX(40px)"`.
+ * That markup is what a phone paints FIRST: the login form is then invisible
+ * until the bundle has downloaded, parsed and hydrated, and invisible forever
+ * if that fails. On a sign-in page, on a slow connection, that is the whole
+ * page gone.
+ *
+ * A CSS animation runs at first paint instead, because the stylesheet is
+ * render-blocking and the animation needs no script. `both` holds the start
+ * frame, which is safe here precisely because the animation has already begun.
+ *
+ * `translateY` rather than `translateX`: a 40px horizontal slide pushed the
+ * card past the right edge of a 390px screen and let the page scroll sideways
+ * while it settled.
+ */
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.rise-in {
+  animation: riseIn 0.55s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in { animation: none; }
 }
