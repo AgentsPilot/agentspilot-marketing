@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -38,7 +37,7 @@ export default function SignupPage() {
         setIsLoading(false);
       }
       // If successful, user will be redirected to Google OAuth flow
-    } catch (error) {
+    } catch {
       setErrorMessage('Failed to sign up with Google. Please try again.');
       setIsLoading(false);
     }
@@ -190,7 +189,7 @@ export default function SignupPage() {
           // Check onboarding status to provide specific message
           try {
             // Try to get profile by email (need to have email column in profiles or use auth.users view)
-            // Since we can't access auth.users from client, we'll check via an API endpoint
+            // Since we can’t access auth.users from client, we’ll check via an API endpoint
             const response = await fetch('/api/check-user-status', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
@@ -315,145 +314,79 @@ export default function SignupPage() {
 
   return (
     <>
-      {/* Header Section */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4"
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
-              <span className="text-orange-400 block">
-                Get Something Handled
-              </span>
-              <span className="text-white block">
-                Starting Today
-              </span>
+      {/*
+        * `overflow-hidden`: the form card animates in from `x: 40`, which on a
+        * 390px phone puts it 24px past the right edge for the length of the
+        * animation. Measured in headless Chromium at 390x844: the document
+        * scrollWidth was 414 against a 390 clientWidth, so the page could be
+        * dragged sideways while it settled. Clipping the section costs nothing
+        * (nothing here is sticky, and it has no vertical overflow) and is the
+        * same guard the homepage hero already uses.
+        */}
+      <section className="relative overflow-hidden px-4 pb-16 pt-14 md:pb-24 md:pt-20 bg-canvas">
+        {/*
+          * Words on the left, the form on the right.
+          *
+          * This page used to carry a two-line hero, three feature blocks with
+          * icons and a four-item list beside the box — a landing page wrapped
+          * around a form. Somebody arriving here has mostly decided, so the
+          * left column says one thing and stops. The argument lives on the
+          * homepage, one click away.
+          */}
+        <div className="mx-auto grid w-full max-w-shell items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+          <div className="max-w-[26rem]">
+            <h1 className="font-display text-[clamp(30px,4vw,44px)] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
+              Create your account
             </h1>
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Stop letting things slip through the cracks. No credit card required.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+            <p className="mt-4 text-[17px] leading-[1.55] text-ink-2">Tell us what you do. We set things up around your business.</p>
+            <p className="mt-5 text-[15px] font-medium text-ink-3">Free for 14 days. No card needed.</p>
+          </div>
 
-      {/* Two-Column Signup Section */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-
-            {/* Left Column - Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                  What You'll Get
-                </h2>
-                <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                  Just describe what keeps slipping through. We handle it from now on.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/20 border border-orange-400/30 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Start in 2 Minutes</h3>
-                    <p className="text-slate-400">Tell us what keeps slipping. We figure out how to handle it.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 border border-blue-400/30 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Your Data Stays Safe</h3>
-                    <p className="text-slate-400">Bank-level security. You control what we can access.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-500/20 border border-green-400/30 flex items-center justify-center">
-                    <svg className="w-6 h-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Start Free</h3>
-                    <p className="text-slate-400">Get one thing handled for free. Only pay when work gets done.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-zinc-800">
-                <h3 className="text-lg font-bold text-white mb-3">What Happens Next</h3>
-                <ul className="space-y-2">
-                  {[
-                    'Describe what keeps slipping through',
-                    'We figure out how to handle it',
-                    'It gets done automatically from now on',
-                    'Only pay when work actually gets done'
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-slate-300">
-                      <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
+          <div>
 
             {/* Right Column - Signup Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 md:p-8 h-full">
+            {/*
+              * A plain div with a CSS entrance, NOT `motion.div`.
+              *
+              * `initial={{ opacity: 0 }}` is server-rendered as an inline
+              * `opacity:0`, so the form was invisible until framer-motion
+              * hydrated, and stayed invisible if the bundle never arrived.
+              * See `.rise-in` in globals.css. It also respects
+              * prefers-reduced-motion, which the motion version did not.
+              */}
+            <div className="rise-in">
+              <div className="bg-surface backdrop-blur-xl border border-line p-6 md:p-8 h-full rounded-[22px]">
               <form onSubmit={handleSignup} className="space-y-4">
 
                 {errorMessage && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-red-500/10 border border-red-500/30 p-4"
+                    className="bg-red-50 border border-red-200 p-4 rounded-xl"
                   >
-                    <p className="text-red-300 text-sm">{errorMessage}</p>
+                    <p className="text-red-600 text-sm">{errorMessage}</p>
                   </motion.div>
                 )}
                 {successMessage && (
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-green-500/10 border border-green-500/30 p-4"
+                    className="bg-pos-soft border border-pos/30 p-4 rounded-xl"
                   >
-                    <p className="text-green-300 text-sm">{successMessage}</p>
+                    <p className="text-pos text-sm">{successMessage}</p>
                   </motion.div>
                 )}
 
-                {/* Full Name */}
+                {/* Your name */}
                 <div className="space-y-1.5">
-                  <label htmlFor="fullName" className="text-sm font-bold text-slate-200 block">
-                    Full Name <span className="text-red-400">*</span>
+                  <label htmlFor="fullName" className="text-sm font-bold text-ink block">
+                    Your name <span className="text-red-600">*</span>
                   </label>
                   <input
                     id="fullName"
                     type="text"
-                    placeholder="Enter your full name"
-                    className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                    placeholder="Your name"
+                    className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 rounded-xl"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     disabled={isLoading}
@@ -463,15 +396,15 @@ export default function SignupPage() {
 
                 {/* Email */}
                 <div className="space-y-1.5">
-                  <label htmlFor="email" className="text-sm font-bold text-slate-200 block">
-                    Email Address <span className="text-red-400">*</span>
+                  <label htmlFor="email" className="text-sm font-bold text-ink block">
+                    Email <span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
                     <input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                      placeholder="you@example.com"
+                      className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 rounded-xl"
                       value={email}
                       onChange={(e) => {
                         setEmail(e.target.value);
@@ -481,8 +414,8 @@ export default function SignupPage() {
                       disabled={isLoading || emailCheckLoading}
                     />
                     {emailCheckLoading && (
-                      <div className="absolute inset-y-0 right-0 pr-4 flex items-center">
-                        <div className="w-5 h-5 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
+                      <div className="absolute inset-y-0 right-0 flex items-center px-4">
+                        <div className="w-5 h-5 border-2 border-accent border-t-transparent rounded-full animate-spin"></div>
                       </div>
                     )}
                   </div>
@@ -490,27 +423,29 @@ export default function SignupPage() {
 
                 {/* Password */}
                 <div className="space-y-1.5">
-                  <label htmlFor="password" className="text-sm font-bold text-slate-200 block">
-                    Password <span className="text-red-400">*</span>
+                  <label htmlFor="password" className="text-sm font-bold text-ink block">
+                    Password <span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
                     <input
                       id="password"
                       type={showPassword ? 'text' : 'password'}
-                      placeholder="Enter your password"
-                      className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 pr-12"
+                      placeholder="Your password"
+                      className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 pr-12 rounded-xl"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       disabled={isLoading}
                     />
                     <button
                       type="button"
-                      className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                      className="absolute inset-y-0 right-0 flex items-center px-4"
                       onClick={() => setShowPassword(!showPassword)}
                       disabled={isLoading}
+                      aria-label={showPassword ? 'Hide password' : 'Show password'}
+                      aria-pressed={showPassword}
                     >
                       <svg
-                        className="w-5 h-5 text-slate-400 hover:text-white transition-colors"
+                        className="w-5 h-5 text-ink-2 hover:text-ink transition-colors"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -543,16 +478,16 @@ export default function SignupPage() {
                   </div>
                 </div>
 
-                {/* Confirm Password */}
+                {/* Confirm password */}
                 <div className="space-y-1.5">
-                  <label htmlFor="confirmPassword" className="text-sm font-bold text-slate-200 block">
-                    Confirm Password <span className="text-red-400">*</span>
+                  <label htmlFor="confirmPassword" className="text-sm font-bold text-ink block">
+                    Confirm password <span className="text-red-600">*</span>
                   </label>
                   <input
                     id="confirmPassword"
                     type="password"
-                    placeholder="Re-enter your password"
-                    className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                    placeholder="Type it again"
+                    className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 rounded-xl"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     disabled={isLoading}
@@ -563,16 +498,16 @@ export default function SignupPage() {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-orange-500 hover:bg-orange-600 disabled:bg-slate-700 text-white font-bold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed"
+                  className="w-full bg-accent hover:bg-accent-hover disabled:bg-line-2 text-white font-bold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed rounded-xl"
                 >
-                  {isLoading ? 'Creating Account...' : 'Sign Up'}
+                  {isLoading ? 'Setting things up…' : 'Create my account'}
                 </button>
 
                 {/* Divider */}
                 <div className="relative flex items-center py-1">
-                  <div className="flex-grow border-t border-white/10"></div>
-                  <span className="flex-shrink mx-4 text-slate-400 text-sm">or continue with</span>
-                  <div className="flex-grow border-t border-white/10"></div>
+                  <div className="flex-grow border-t border-line"></div>
+                  <span className="flex-shrink mx-4 text-ink-2 text-sm">or continue with</span>
+                  <div className="flex-grow border-t border-line"></div>
                 </div>
 
                 {/* Google Sign Up Button */}
@@ -580,7 +515,7 @@ export default function SignupPage() {
                   type="button"
                   onClick={handleGoogleSignUp}
                   disabled={isLoading}
-                  className="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
+                  className="w-full bg-sunk hover:bg-line-2 border border-line-2 hover:border-line-2 text-ink font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
                 >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path
@@ -605,35 +540,35 @@ export default function SignupPage() {
 
                 {/* OAuth Info */}
                 <div className="text-center">
-                  <p className="text-xs text-slate-500">
-                    By signing up with Google, you agree to our terms. If you already have an account, you'll be signed in.
+                  <p className="text-xs text-ink-3">
+                    By signing up with Google, you agree to our terms. If you already have an account, you’ll be signed in.
                   </p>
                 </div>
               </form>
               </div>
-            </motion.div>
+            </div>
 
           </div>
         </div>
       </section>
 
       {/* Footer Info Section */}
-      <section className="relative py-12 px-4 bg-zinc-950 border-t border-zinc-800">
+      <section className="relative py-12 px-4 bg-canvas border-t border-line">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4">
-            <p className="text-slate-400 text-sm">
+            <p className="text-ink-2 text-sm">
               Already have an account?{' '}
-              <Link href="/login" className="text-orange-400 hover:text-orange-300 font-bold transition-colors">
+              <Link href="/login" className="text-accent hover:text-accent font-bold transition-colors">
                 Sign in here
               </Link>
             </p>
-            <p className="text-slate-500 text-xs">
+            <p className="text-ink-3 text-xs">
               By creating an account, you agree to our{' '}
-              <Link href="/terms" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/terms" className="text-ink-2 hover:text-ink transition-colors">
                 Terms of Service
               </Link>
               {' '}and{' '}
-              <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/privacy" className="text-ink-2 hover:text-ink transition-colors">
                 Privacy Policy
               </Link>
             </p>

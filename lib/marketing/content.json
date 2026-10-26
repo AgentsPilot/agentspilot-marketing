@@ -1,0 +1,819 @@
+{
+  "version": "1.0.0",
+  "source": "AgentsPilot_Website_Design_and_Content.docx",
+  "status": "copy approved; delegation and day-demo corrected 2026-10-07 against shipped behaviour (see corrections)",
+  "meta": {
+    "seoTitle": "AgentsPilot | Your AI Business OS",
+    "metaDescription": "Bring your daily business work together. AgentsPilot helps you get organized, see what needs attention, and hand over routine activities with your approval.",
+    "socialNote": "Use the same title and description for social metadata, with a branded static preview image and the real canonical URL.",
+    "prohibited": [
+      "fabricated reviews",
+      "fabricated ratings",
+      "customer logos"
+    ]
+  },
+  "cta": {
+    "primary": {
+      "id": "cta.primary",
+      "label": "Build my workspace",
+      "destination": "{{ONBOARDING_URL}}",
+      "destinationMode": "onboarding"
+    },
+    "primaryFallback": {
+      "label": "Book a demo",
+      "destination": "{{SCHEDULING_URL}}",
+      "destinationMode": "demo"
+    },
+    "secondary": {
+      "id": "cta.secondary",
+      "label": "See a day with AgentsPilot",
+      "opens": "dialog.dayDemo"
+    }
+  },
+  "navigation": {
+    "desktop": {
+      "headerHeightPx": 76,
+      "links": [
+        {
+          "id": "nav.builtForYou",
+          "label": "Built for you",
+          "href": "#built-for-you"
+        },
+        {
+          "id": "nav.seeClearly",
+          "label": "See clearly",
+          "href": "#see-clearly"
+        },
+        {
+          "id": "nav.handItOver",
+          "label": "Hand it over",
+          "href": "#hand-it-over"
+        },
+        {
+          "id": "nav.pricing",
+          "label": "Pricing",
+          "href": "#pricing"
+        }
+      ],
+      "login": {
+        "id": "nav.login",
+        "label": "Log in",
+        "href": "{{SIGNIN_URL}}"
+      }
+    },
+    "mobile": {
+      "headerHeightPx": 64,
+      "trigger": "Menu",
+      "rule": "Do not overlay an additional bottom CTA on small screens."
+    },
+    "anchorOffset": "header height + 24px"
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "anchor": "#top",
+      "order": 1,
+      "takeaway": "This could lighten my day.",
+      "eyebrow": "YOUR AI BUSINESS OS",
+      "headline": "Your business.\nLess on your shoulders.",
+      "body": "Help people find you, turn interest into clients, and keep your day moving. AgentsPilot brings the capabilities you need into one workspace, helps you see what matters, and handles the routine you choose to hand over.",
+      "primaryCta": "cta.primary",
+      "secondaryCta": "cta.secondary",
+      "supportLine": "Built around your business. Guided by you.",
+      "visual": {
+        "name": "HeroDayBoard",
+        "title": "A little more room in your day",
+        "rows": [
+          {
+            "id": "row.brought",
+            "initial": "New inquiry from Sam",
+            "final": "Sam’s inquiry is organized",
+            "meaning": "Bring the work together"
+          },
+          {
+            "id": "row.attention",
+            "initial": "Sam is waiting for a reply",
+            "final": "Suggested next step: follow up",
+            "meaning": "Show what needs attention"
+          },
+          {
+            "id": "row.action",
+            "initial": "Follow-up ready for review",
+            "final": "Approved by you · Follow-up sent",
+            "meaning": "Carry out an approved action"
+          }
+        ],
+        "$meaningNote": "The 'meaning' field is developer rationale. It is NOT visitor-facing copy and must not be rendered.",
+        "storyboardMs": {
+          "highlightInquiry": 600,
+          "revealSuggestedAction": 2000,
+          "approvedBadge": 3800,
+          "followUpSent": 5200,
+          "finish": 6500
+        },
+        "badge": "Approved by you",
+        "affordance": "View activity",
+        "controls": [
+          "Pause while playing",
+          "Replay after completion"
+        ],
+        "caption": "Illustrative example · Actions follow your approval settings.",
+        "mobile": "Compact final-state board with an explicit Play example button.",
+        "reducedMotion": "Static final state with the text transcript available."
+      }
+    },
+    {
+      "id": "problem",
+      "anchor": "#the-problem",
+      "order": 2,
+      "takeaway": "They understand the work between my tools.",
+      "eyebrow": "THE WORK BETWEEN THE WORK",
+      "headline": "Somehow, every tool\nstill needs you.",
+      "body": "One place to get found. Another to arrange your day. Somewhere else to keep up with clients and what they owe. You pay for features you barely touch, then spend your time holding it all together.",
+      "bridge": "And now you’re expected to connect AI agents to it all. You wanted help running your business. You got more to manage.",
+      "transition": "Let’s start with what your business actually needs.",
+      "visual": {
+        "name": "ProblemDesk",
+        "groupLabel": "Still on me",
+        "slips": [
+          {
+            "id": "slip.reply",
+            "task": "Reply to Sam",
+            "detail": "Asked about a first session"
+          },
+          {
+            "id": "slip.tomorrow",
+            "task": "Check tomorrow",
+            "detail": "Confirm who is coming"
+          },
+          {
+            "id": "slip.alex",
+            "task": "Remember Alex’s goal",
+            "detail": "Keep the next conversation personal"
+          },
+          {
+            "id": "slip.owed",
+            "task": "Check what is owed",
+            "detail": "Follow up on an outstanding balance"
+          },
+          {
+            "id": "slip.offer",
+            "task": "Update my offer",
+            "detail": "Make the new package easy to find"
+          }
+        ],
+        "motion": "Single short stagger, 400ms maximum total reveal.",
+        "desktop": "Slips may rotate up to two degrees but never overlap text.",
+        "mobile": "No rotation. A clean vertical list, all five visible, no swipe dependency.",
+        "restraint": "No competitor marks, subscription totals, or fabricated savings. No additional CTA."
+      }
+    },
+    {
+      "id": "capabilities",
+      "anchor": "#built-for-you",
+      "order": 3,
+      "takeaway": "This can be shaped around my business.",
+      "eyebrow": "BUILT AROUND YOU",
+      "headline": "Start with your business.\nBuild from there.",
+      "body": "Tell AgentsPilot what you offer, who you help, and how your day works. It helps shape a workspace around the capabilities you need, so you can get organized and start moving things forward.",
+      "exampleBrief": "I’m a personal trainer. I offer private sessions and monthly packages, and I want less time spent arranging everything.",
+      "workspaceLabel": "Illustrative workspace for Maya’s training business.",
+      "primaryCta": "cta.primary",
+      "defaultSelected": "cap.enquiries",
+      "capabilities": [
+        {
+          "id": "cap.discovered",
+          "label": "Get discovered",
+          "description": "Give people a place to understand what you offer and take the next step.",
+          "object": {
+            "kind": "Your services",
+            "value": "Private sessions & monthly packages",
+            "detail": "A page that explains what you offer and how to start.",
+            "actions": [
+              "Book an intro session"
+            ]
+          }
+        },
+        {
+          "id": "cap.enquiries",
+          "label": "Turn interest into clients",
+          "description": "Keep inquiries together and know who needs a reply.",
+          "object": {
+            "kind": "New inquiry",
+            "value": "Sam",
+            "detail": "Asked about a first session yesterday. No reply is recorded.",
+            "actions": [
+              "Reply",
+              "Mark as handled"
+            ]
+          }
+        },
+        {
+          "id": "cap.day",
+          "label": "Make room in your day",
+          "description": "Let people choose an available time and know what is coming next.",
+          "object": {
+            "kind": "Available times",
+            "value": "Next week",
+            "actions": [
+              "Tue 9:00",
+              "Tue 14:30",
+              "Thu 11:00",
+              "Fri 16:00"
+            ]
+          }
+        },
+        {
+          "id": "cap.remembered",
+          "label": "Make every client feel remembered",
+          "description": "Keep useful details and conversations close when you need them.",
+          "object": {
+            "kind": "Client note",
+            "value": "Alex",
+            "detail": "Training for a first 10k in April. Prefers early mornings."
+          }
+        },
+        {
+          "id": "cap.paid",
+          "label": "Get paid with less chasing",
+          "description": "Make it easier for clients to pay and see what is still outstanding.",
+          "object": {
+            "kind": "Outstanding balance",
+            "value": "Jordan · one session",
+            "detail": "Past its recorded due date.",
+            "actions": [
+              "Send a reminder"
+            ]
+          }
+        },
+        {
+          "id": "cap.moving",
+          "label": "Keep things moving",
+          "description": "Bring your tasks and next steps together so less slips through.",
+          "object": {
+            "kind": "Today",
+            "value": "Three next steps",
+            "detail": "Reply to Sam · Confirm tomorrow · Update the new package"
+          }
+        }
+      ],
+      "interaction": {
+        "desktop": "Vertical selector in four columns, preview in eight. Accessible tabs with arrow-key navigation. All six selectable, never auto-rotating.",
+        "tablet": "Selectors become a two-column list above the preview.",
+        "mobile": "Six accessible accordion items, preview directly below its label. Only one open initially.",
+        "motionMs": {
+          "briefReveal": 300,
+          "tabCrossfade": 160
+        }
+      }
+    },
+    {
+      "id": "insights",
+      "anchor": "#see-clearly",
+      "order": 4,
+      "takeaway": "I can see what needs attention.",
+      "eyebrow": "A CLEARER PICTURE",
+      "headline": "Know what needs you.\nAnd what can wait.",
+      "body": "See what is happening across your business without piecing the day together yourself. AgentsPilot highlights what needs attention, explains why, and suggests a useful next step.",
+      "supportLine": "A clearer view. A practical next move.",
+      "viewTitle": "Today, in focus",
+      "defaultSelected": "insight.reply",
+      "priorities": [
+        {
+          "id": "insight.reply",
+          "priority": "Sam is waiting for a reply",
+          "evidence": "Asked about a first session yesterday. No reply is recorded.",
+          "action": "Review follow-up",
+          "detail": {
+            "title": "A conversation worth picking up",
+            "explanation": "Sam asked about a first session yesterday. There is no reply recorded yet. A short follow-up could help them take the next step.",
+            "evidenceLabel": "Based on: inquiry received yesterday · no recorded reply"
+          },
+          "behaviour": "Scrolls to #hand-it-over and selects the Sam example."
+        },
+        {
+          "id": "insight.availability",
+          "priority": "Room in next week’s schedule",
+          "evidence": "Four available appointment times are shown in the example schedule.",
+          "action": "Review availability",
+          "behaviour": "Opens a local drawer with four fictional time slots.",
+          "drawer": {
+            "title": "Preview: available times",
+            "items": [
+              "Tuesday 9:00 · 60 minutes",
+              "Tuesday 14:30 · 60 minutes",
+              "Thursday 11:00 · 45 minutes",
+              "Friday 16:00 · 60 minutes"
+            ],
+            "note": "Preview action. Nothing is sent or scheduled."
+          }
+        },
+        {
+          "id": "insight.balances",
+          "priority": "Two balances need attention",
+          "evidence": "Two items are past their recorded due dates.",
+          "action": "Review reminders",
+          "behaviour": "Opens a local drawer listing two illustrative overdue items and draft reminders.",
+          "drawer": {
+            "title": "Preview: draft reminders",
+            "items": [
+              "Jordan · one session — Draft prepared",
+              "Priya · monthly package — Draft prepared"
+            ],
+            "note": "Preview action. Nothing is sent."
+          }
+        }
+      ],
+      "exampleNote": "Illustrative example. Insights depend on the activity available to AgentsPilot.",
+      "accuracyRules": [
+        "Say “no recorded reply”, never “you forgot to reply” — the system may not see every communication channel.",
+        "Do not describe available capacity as lost revenue.",
+        "Do not describe a suggested follow-up as a guaranteed conversion."
+      ],
+      "motion": {
+        "evidenceBeforeActionMs": 180,
+        "mobile": "Three stacked disclosure items, the first open. No sticky panel. Explanation and action always appear together."
+      }
+    },
+    {
+      "id": "delegation",
+      "anchor": "#hand-it-over",
+      "order": 5,
+      "takeaway": "I choose what it handles.",
+      "eyebrow": "LESS ON YOUR PLATE",
+      "headline": "You don’t have to\nbe the follow-up person.",
+      "body": "As AgentsPilot learns how you work, it can take the first reply off your plate. Start with one. See what would go out, choose whether it sends on its own, and keep the time to change your mind.",
+      "supportLine": "You set the boundaries. You can change them.",
+      "primaryCta": "cta.primary",
+      "stage": "Dark ink background with white section copy and a large light approval panel inside it.",
+      "panel": {
+        "recommendation": "Want AgentsPilot to answer new inquiries?",
+        "reason": "Sam's inquiry is still waiting. AgentsPilot can send your booking link, so nobody is left without a way to take the next step.",
+        "draftReply": "Hi Sam, thanks for getting in touch. You can pick a time that suits you here:",
+        "reviewSettings": [
+          {
+            "id": "review.tell_me",
+            "label": "Just tell me when someone is waiting",
+            "default": true
+          },
+          {
+            "id": "review.autosend",
+            "label": "Send them my booking link for me",
+            "default": false,
+            "revealsRules": "New inquiries only, and only once you have a bookable link — without one, nothing is sent. AgentsPilot invites them to pick a time about fifteen minutes after they write, and tells you it is going so you can change or cancel it. A quote request always comes back to you, because only you can name a price."
+          }
+        ],
+        "simulationAction": "Let it send in example",
+        "completedState": "Example complete · Invitation sent, with time to stop it",
+        "pausedState": "Paused · No further example actions",
+        "activityReceipt": "Sam's inquiry → Booking link prepared → You had fifteen minutes → Invitation sent",
+        "controls": [
+          "Pause example workflow",
+          "Reset example"
+        ]
+      },
+      "stateMachine": {
+        "states": [
+          "proposed",
+          "reviewing",
+          "approved",
+          "completed",
+          "paused"
+        ],
+        "rules": [
+          "Require a deliberate click to move from review to approval.",
+          "Never auto-select permission.",
+          "The UI cannot enter completed before approval.",
+          "Reset returns to proposed.",
+          "The marketing demo has no send or payment endpoints."
+        ]
+      },
+      "mobileOrder": [
+        "reason",
+        "draft",
+        "settings",
+        "action",
+        "receipt"
+      ],
+      "fallbackIfNoAutonomy": {
+        "removeOption": "review.autosend",
+        "replaceBodyFirstSentence": "AgentsPilot tells you the moment an inquiry arrives, so you can reply while it still matters.",
+        "rule": "Never imply that a demonstration proves an unreleased capability."
+      }
+    },
+    {
+      "id": "pricing",
+      "anchor": "#pricing",
+      "order": 6,
+      "takeaway": "I understand what I get and pay.",
+      "eyebrow": "SUPPORT FOR THE EVERYDAY",
+      "headline": "A place to run your business.\nMore help as you need it.",
+      "body": "Bring the essentials together, get a clearer view of your day, and start handing over the routine.",
+      "planName": "Your business workspace",
+      "proposedPrice": "$98 / month",
+      "planDescription": "The capabilities to organize your business, with AI to help you set things up and move daily work forward.",
+      "included": [
+        "Help people discover what you offer",
+        "Keep inquiries and client details together",
+        "Organize your time and next steps",
+        "See what is still owed",
+        "Review useful insights and proposed actions"
+      ],
+      "primaryCta": "cta.primary",
+      "usageHeading": "Choose how much help you need",
+      "usageIntroduction": "AI usage depends on the work you ask AgentsPilot to do. Your plan’s allowance and the cost of additional usage are shown here.",
+      "layout": "One primary plan card, not a speculative three-tier comparison. A quiet usage explanation beside it. On mobile, price and inclusions first, then usage details, then the CTA.",
+      "publishBlocked": true,
+      "fallbackIfNotReady": {
+        "headline": "Let’s find the right fit for your business",
+        "cta": "Book a demo"
+      }
+    },
+    {
+      "id": "faq",
+      "anchor": "#questions",
+      "order": 7,
+      "takeaway": "My practical concerns are answered.",
+      "heading": "A few things you may be wondering.",
+      "items": [
+        {
+          "id": "faq.who",
+          "q": "Who is AgentsPilot for?",
+          "a": "AgentsPilot is designed for independent professionals and small service businesses that want help organizing the day and managing the work around their clients."
+        },
+        {
+          "id": "faq.ai",
+          "q": "Do I need to understand AI?",
+          "a": "Start by describing your business and what you need help with. AgentsPilot helps you shape the workspace and review the next steps in everyday language."
+        },
+        {
+          "id": "faq.tools",
+          "q": "What if I already have tools I like?",
+          "a": "Start with the capabilities you need. Where a supported connection is available, you can bring activity from an existing tool into AgentsPilot. Check the available connections before relying on a particular workflow."
+        },
+        {
+          "id": "faq.contact",
+          "q": "Will it contact clients without asking me?",
+          "a": "You choose which activities to authorize and when approval is required. Review the settings for each workflow before enabling it. You can pause an enabled workflow when you need to."
+        },
+        {
+          "id": "faq.runs",
+          "q": "Does it run my whole business for me?",
+          "a": "You stay responsible for business decisions. AgentsPilot helps organize the work, highlights what needs attention, and carries out the routine activities you authorize."
+        },
+        {
+          "id": "faq.learns",
+          "q": "What does “learns how I work” mean?",
+          "a": "It means using the business information, preferences, and activity available in your workspace to make its suggestions more relevant. It does not mean it knows everything happening in your business."
+        }
+      ],
+      "developerNote": "Confirm each answer against the shipped product. The approval and pause answer requires those controls; if missing, describe the actual draft-and-review behaviour. Do not add claims about training, security certification, data ownership, deletion, or export until the applicable product behaviour and policy are confirmed.",
+      "implementation": "Native disclosure elements or buttons with expanded states. Keyboard operable. Answers remain available to search engines."
+    },
+    {
+      "id": "closing",
+      "anchor": "#get-started",
+      "order": 8,
+      "takeaway": "I know my next step.",
+      "headline": "Make room for the part\nof your business you love.",
+      "body": "Tell us what you do, what your day looks like, and what you would like off your plate. Let’s build from there.",
+      "primaryCta": "cta.primary",
+      "visual": "A quiet continuation of the day board. No animation necessary.",
+      "states": [
+        "Organized",
+        "Needs your decision",
+        "Handled with approval"
+      ],
+      "restraint": "Leave generous open space. Avoid a fabricated “hours saved” number."
+    }
+  ],
+  "dialog": {
+    "id": "dialog.dayDemo",
+    "header": "A day with AgentsPilot",
+    "subtitle": "An illustrative example for Maya, a personal trainer.",
+    "steps": [
+      {
+        "id": "demo.1",
+        "title": "Your day is ready before you are.",
+        "body": "Maya's first session is at seven. The brief is already waiting: who is coming, who still owes a form, who has not paid, and what money landed overnight.",
+        "controls": [
+          "Next: While you work"
+        ]
+      },
+      {
+        "id": "demo.2",
+        "title": "The chasing happens without you.",
+        "body": "While Maya trains, tomorrow's clients get their reminders, the form nobody returned gets a nudge, and the invoice that slipped past its date is chased. She approves none of it, because she decided once.",
+        "controls": [
+          "Back",
+          "Next: The one thing left"
+        ]
+      },
+      {
+        "id": "demo.3",
+        "title": "One thing is kept for you.",
+        "body": "Sam asked about a first session and no reply is recorded. AgentsPilot says why it thinks so, offers to send your booking link, and leaves you fifteen minutes to change your mind.",
+        "controls": [
+          "Back",
+          "Let it send",
+          "Cancel this one"
+        ]
+      }
+    ],
+    "completion": "That was a Tuesday. You chose all of it once.",
+    "accessibility": [
+      "Trap focus while open",
+      "Label the dialog",
+      "Support Escape",
+      "Make the background inert",
+      "Return focus to the initiating control",
+      "Step changes move focus to the new step heading",
+      "Announce completion politely, not every decorative change"
+    ],
+    "mobile": "Full-height sheet with an independently scrolling body and a visible Close button.",
+    "rule": "No automatic step advance. The main page keeps its scroll position after dismissal."
+  },
+  "interactionStates": [
+    {
+      "id": "state.navigating",
+      "when": "CTA navigating",
+      "text": "Opening your workspace…",
+      "behaviour": "Prevent duplicate navigation and retain focus."
+    },
+    {
+      "id": "state.navFailed",
+      "when": "Navigation failure",
+      "text": "We couldn’t open the next step. Please try again.",
+      "behaviour": "Show Retry and a working Contact link."
+    },
+    {
+      "id": "state.previewFailed",
+      "when": "Preview unavailable",
+      "text": "The example couldn’t load. You can still explore the page below.",
+      "behaviour": "Show Close."
+    },
+    {
+      "id": "state.demo",
+      "when": "Demo interaction",
+      "rule": "Every send or approval control includes “example” or “preview” and never makes a live call."
+    }
+  ],
+  "footer": {
+    "brandDescription": "AgentsPilot · Your AI Business OS. Built around your business. Guided by you.",
+    "links": [
+      {
+        "label": "Built for you",
+        "href": "#built-for-you"
+      },
+      {
+        "label": "See clearly",
+        "href": "#see-clearly"
+      },
+      {
+        "label": "Hand it over",
+        "href": "#hand-it-over"
+      },
+      {
+        "label": "Pricing",
+        "href": "#pricing"
+      },
+      {
+        "label": "Contact",
+        "href": "{{CONTACT_URL}}"
+      },
+      {
+        "label": "Privacy",
+        "href": "{{PRIVACY_URL}}"
+      },
+      {
+        "label": "Terms",
+        "href": "{{TERMS_URL}}"
+      }
+    ],
+    "copyright": "© {{CURRENT_YEAR}} AgentsPilot. All rights reserved.",
+    "rule": "Contact, Privacy and Terms require real approved destinations. Do not generate legal language or use dead links."
+  },
+  "designTokens": {
+    "canvas": "#F8F7F3",
+    "surface": "#FFFFFF",
+    "ink": "#142B36",
+    "inkSecondary": "#52636B",
+    "actionOrange": "#B94720",
+    "brightOrange": "#F57843",
+    "quietBlue": "#DDEAF0",
+    "border": "#CCD6DA",
+    "positive": "#216B4A",
+    "typography": {
+      "headings": "Manrope",
+      "body": "Inter",
+      "scalePx": [
+        64,
+        44,
+        24,
+        18,
+        14
+      ],
+      "note": "Self-host WOFF2 when licensed and available."
+    },
+    "geometry": {
+      "panelRadiusPx": 16,
+      "buttonRadiusPx": 10
+    },
+    "logo": "Reuse the approved vector assets. Do not redraw the mark or alter the wordmark font."
+  },
+  "layout": {
+    "desktop": {
+      "minWidthPx": 1280,
+      "maxContentPx": 1200,
+      "guttersPx": 40,
+      "columns": 12,
+      "gapPx": 24,
+      "hero": "five columns of copy, one spacer, six columns of visual",
+      "sectionSpacingPx": [
+        104,
+        120
+      ],
+      "lineLengthChars": [
+        55,
+        65
+      ]
+    },
+    "tablet": {
+      "rangePx": [
+        768,
+        1279
+      ],
+      "guttersPx": 32,
+      "sectionSpacingPx": 72,
+      "notes": [
+        "Capability selectors become a two-column list above the preview.",
+        "Remove sticky positioning below 1024."
+      ]
+    },
+    "mobile": {
+      "maxWidthPx": 767,
+      "guttersPx": 20,
+      "sectionSpacingPx": 56,
+      "typePx": {
+        "hero": 40,
+        "sectionHeading": 32,
+        "body": 17
+      },
+      "notes": [
+        "Copy and CTA before the visual.",
+        "Full-width primary buttons.",
+        "A single example at a time.",
+        "No clipped sideways carousels or tiny desktop screenshots."
+      ]
+    },
+    "scroll": "Normal document scrolling. Never trap scrolling. Every section must make sense as a static screenshot."
+  },
+  "motionContract": {
+    "heroDayBoard": {
+      "durationMs": 6500,
+      "trigger": "once while visible",
+      "controls": [
+        "Pause",
+        "Replay"
+      ],
+      "fallback": "Static completed board and transcript"
+    },
+    "sectionEntranceMs": [
+      180,
+      240
+    ],
+    "taskSlipsMaxMs": 400,
+    "capabilityCrossfadeMs": 160,
+    "approvalReceiptMs": 200,
+    "prohibited": [
+      "autoplay audio",
+      "parallax",
+      "animated background gradients",
+      "infinite marquees",
+      "scroll hijacking"
+    ],
+    "rules": [
+      "Respect prefers-reduced-motion across every component.",
+      "Pause sequences when offscreen or the tab is hidden.",
+      "Animate opacity and transform only.",
+      "Reserve layout space to prevent shifts."
+    ]
+  },
+  "accessibility": [
+    "One H1 and ordered section headings",
+    "Skip link",
+    "Visible focus rings",
+    "Descriptive button names",
+    "Targets at least 44 by 44 px",
+    "Normal text 4.5:1, large text 3:1",
+    "Never rely on orange or green alone to convey status",
+    "Keyboard-only use and 200% zoom tested",
+    "Decorative visuals must not repeat screen-reader announcements"
+  ],
+  "analytics": {
+    "events": [
+      "primary_cta_click (section_id, destination_mode)",
+      "demo_open",
+      "demo_step_view",
+      "demo_complete",
+      "capability_select",
+      "insight_action_click",
+      "pricing_view"
+    ],
+    "rule": "Never send business descriptions, client names, message text, or personal data. Apply the site’s consent rules.",
+    "note": "Measure onboarding starts and completions separately from clicks."
+  },
+  "releaseGates": [
+    {
+      "id": "gate.pricing",
+      "claim": "Commercial offer",
+      "required": "Base price and billing period, included AI allowance and its unit, additional usage price, usage controls, separate charges, plan boundaries.",
+      "status": "BLOCKED",
+      "evidence": "lib/business-os/entitlements/config/tierMatrix.ts states no commercial tier is configured; BOS_ENTITLEMENTS_MODE is unset in production.",
+      "fallback": "Replace the price and usage block with “Let’s find the right fit for your business” and a working Book a demo CTA."
+    },
+    {
+      "id": "gate.tailoredSetup",
+      "claim": "Tailored setup",
+      "required": "Confirm the onboarding configures the stated capabilities.",
+      "fallback": "Say it helps the owner set them up.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "gate.insights",
+      "claim": "Business insights",
+      "required": "Confirm data sources and insight behaviour.",
+      "fallback": "Remove unsupported examples.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "gate.learns",
+      "claim": "Learns how you work",
+      "required": "Confirm retained preferences or activity context.",
+      "fallback": "Use “Uses the information you provide.”",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "gate.autonomy",
+      "claim": "Autonomous follow-up",
+      "required": "Confirm triggers, stop rules, approval, activity history and pause.",
+      "fallback": "Draft-and-review only.",
+      "status": "UNVERIFIED"
+    },
+    {
+      "id": "gate.connections",
+      "claim": "Connected tools",
+      "required": "List only available supported connections, with an accurate destination for checking them.",
+      "status": "UNVERIFIED",
+      "note": "28 plugin definitions exist in lib/plugins/definitions/."
+    },
+    {
+      "id": "gate.legal",
+      "claim": "Contact, Privacy, Terms",
+      "required": "Real approved destinations.",
+      "status": "BLOCKED",
+      "note": "Do not generate legal language or use dead links."
+    }
+  ],
+  "corrections": [
+    {
+      "date": "2026-10-07",
+      "claim": "Replies are drafted for the owner to review and approve before sending.",
+      "finding": "Not how it works. `reply_to_enquiries` is keyed on `lead_autosend_enabled`; the reply is queued `status: 'pending'` and sent by a drain after 15 minutes. `pending` means awaiting SEND, not awaiting approval — LeadResponseRepository says so explicitly. The 15 minutes is the owner's window to change or cancel (`cancelPending`, skip_reason `cancelled_by_owner`).",
+      "changed": [
+        "dialog.steps[2].body",
+        "delegation.panel.*",
+        "delegation.body"
+      ],
+      "note": "The approved fallback copy also claimed review-and-approve, so switching the autonomy gate off would not have made the page true. Both paths were rewritten."
+    },
+    {
+      "date": "2026-10-07",
+      "claim": "Follow-ups stop if the person replies, books, or opts out.",
+      "finding": "Only the booking case was found. No reply detection and no `email_unsubscribes` check in the lead-response path. The other two stops were removed rather than softened.",
+      "changed": [
+        "delegation.panel.reviewSettings[1].revealsRules"
+      ]
+    },
+    {
+      "date": "2026-10-07",
+      "claim": "AgentsPilot writes the reply.",
+      "finding": "It does not write anything. `queueLeadReply` resolves a booking URL and `buildLeadReplyCandidates` builds a fixed invitation listing the business's services, each with a booking link. Nothing is composed per enquiry. It also returns EMPTY with no bookable link — `if (!input.bookingUrl) return candidates` — so a business with no booking page sends nothing at all, and LeadAlertService logs 'No auto-reply queued: this business has no bookable link yet'.",
+      "changed": [
+        "dialog.steps[2].body",
+        "delegation.panel.*"
+      ],
+      "note": "This correction replaces an earlier one from the same day that had already rewritten the step. The first pass fixed the approval claim and left 'writes the reply' standing."
+    },
+    {
+      "date": "2026-10-07",
+      "claim": "The day demo showed one flow: an inquiry, a suggestion, a reply.",
+      "finding": "Accurate but tiny. It described a single automation and missed the day. The platform sends a narrated MORNING BRIEF (BriefingFactsService: today's appointments, who has not returned intake, who has not paid, what money landed, cancellations and no-shows) delivered by email and as a dashboard card, and runs SIX unattended automations — remind_about_meeting, chase_intake, chase_invoices, chase_quotes, reply_to_enquiries, auto_complete_meetings — each with its own switch.",
+      "changed": [
+        "dialog.steps",
+        "dialog.completion"
+      ],
+      "note": "Rewritten as a real day: the brief before you start, the chasing that happens without you, and the one thing kept back for a person."
+    }
+  ]
+}

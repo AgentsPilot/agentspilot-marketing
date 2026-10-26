@@ -74,8 +74,20 @@ export const WORDMARK: { light: LogoAsset; dark: LogoAsset } = {
  * claim the manifest cannot keep. Width is never given; it follows the ratio.
  */
 export const LOGO_HEIGHT = {
-  /** The marketing header. Taller than the app's: this is the first thing seen. */
-  header: 34,
+  /*
+   * The marketing header.
+   *
+   * Was 34. Reduced to 26 on 2026-10-07: at 34px a 5.5:1 lockup is 187px wide
+   * and dominated a 96px-tall bar, reading as a banner rather than as chrome.
+   * 26px is 143px wide, which still leaves the wordmark legible and lets the
+   * nav and the call to action hold their own weight.
+   *
+   * ⚠️ `SIZING` in `components/brand/Logo.tsx` carries the matching LITERAL
+   * Tailwind classes and must change with this. `npm run brand:verify` fails
+   * if the two disagree — that check exists because a runtime-built
+   * `h-[${n}px]` compiles and produces an element with no height.
+   */
+  header: 26,
   /** The footer lockup, above the tagline. */
   footer: 26,
   /** Narrow viewports, where a 5.5:1 lockup competes with the nav toggle. */

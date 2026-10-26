@@ -20,8 +20,16 @@ import { WORDMARK, LOGO_HEIGHT, widthForHeight, type LogoPlacement } from '@/lib
  * rendered on a near-black nav — the exact problem the dark variant exists to
  * fix, reintroduced by assuming a mechanism this site does not have.
  *
- * If a light section is ever added, pass `tone="light"` there. Do not
- * reintroduce a theme-following mode unless something starts setting the class.
+ * THAT LIGHT SECTION NOW EXISTS, and the default is no longer the common case.
+ * The marketing shell went light in the 2026-10 homepage redesign, so the
+ * HEADER passes `tone="light"` (the dark-ink wordmark, for a light ground) and
+ * the FOOTER keeps the default (`bg-zinc-800/60` stayed dark, so it still wants
+ * the light-ink wordmark).
+ *
+ * The default is left at `dark` deliberately rather than flipped: the app also
+ * imports this component against dark chrome, and a silent flip would move the
+ * problem rather than fix it. Pass the tone; do not reintroduce a
+ * theme-following mode unless something starts setting the class.
  *
  * ─────────────────────────────────────────────────────────────────────────────
  * WHY THE SIZES ARE LITERAL CLASS STRINGS
@@ -36,7 +44,7 @@ import { WORDMARK, LOGO_HEIGHT, widthForHeight, type LogoPlacement } from '@/lib
 
 /** Literal Tailwind classes per placement. Must match `LOGO_HEIGHT`. */
 const SIZING: Record<LogoPlacement, { responsive: string; fixed: string }> = {
-  header: { responsive: 'h-[24px] sm:h-[34px] w-auto', fixed: 'h-[34px] w-auto' },
+  header: { responsive: 'h-[22px] sm:h-[26px] w-auto', fixed: 'h-[26px] w-auto' },
   footer: { responsive: 'h-[24px] sm:h-[26px] w-auto', fixed: 'h-[26px] w-auto' },
   compact: { responsive: 'h-[24px] w-auto', fixed: 'h-[24px] w-auto' },
 };

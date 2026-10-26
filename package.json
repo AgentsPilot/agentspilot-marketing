@@ -7,7 +7,9 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start -p 3001",
-    "lint": "next lint"
+    "lint": "next lint",
+    "verify:tokens": "node scripts/marketing/verify-tokens.js",
+    "verify": "npm run brand:verify && npm run verify:tokens"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

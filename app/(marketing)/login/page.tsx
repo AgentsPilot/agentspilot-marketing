@@ -2,14 +2,17 @@
 
 import { useState } from 'react';
 import { handOffToApp } from '@/lib/authHandoff';
-import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabaseClient';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Lock, Mail, Shield, Zap } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 export default function LoginPage() {
-  const router = useRouter();
+  /*
+   * No `router` here on purpose: nothing in this page calls it. Sign-in hands
+   * the session over with a hard navigation (see the auth flow), so a client
+   * push would race it. Restored only if a client-side redirect is wanted.
+   */
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -39,7 +42,7 @@ export default function LoginPage() {
         setIsLoading(false);
       }
       // If successful, user will be redirected to Google OAuth flow
-    } catch (error) {
+    } catch {
       setErrorMessage('Failed to sign in with Google. Please try again.');
       setIsLoading(false);
     }
@@ -135,7 +138,7 @@ export default function LoginPage() {
         // the refresh token in the url. See `lib/authHandoff`.
         await handOffToApp(data.session);
       }
-    } catch (error) {
+    } catch {
       setErrorMessage('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
@@ -169,127 +172,65 @@ export default function LoginPage() {
 
   return (
     <>
-      {/* Header Section */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-950 border-b border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center space-y-4"
-          >
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
-              <span className="text-orange-400 block">
-                Welcome Back
-              </span>
-              <span className="text-white block">
-                Pick Up Where You Left Off
-              </span>
+      {/*
+        * `overflow-hidden`: the form card animates in from `x: 40`, which on a
+        * 390px phone puts it 24px past the right edge for the length of the
+        * animation. Measured in headless Chromium at 390x844: the document
+        * scrollWidth was 414 against a 390 clientWidth, so the page could be
+        * dragged sideways while it settled. Clipping the section costs nothing
+        * (nothing here is sticky, and it has no vertical overflow) and is the
+        * same guard the homepage hero already uses.
+        */}
+      <section className="relative overflow-hidden px-4 pb-16 pt-14 md:pb-24 md:pt-20 bg-canvas">
+        {/*
+          * Words on the left, the form on the right.
+          *
+          * This page used to carry a two-line hero, three feature blocks with
+          * icons and a four-item list beside the box — a landing page wrapped
+          * around a form. Somebody arriving here has mostly decided, so the
+          * left column says one thing and stops. The argument lives on the
+          * homepage, one click away.
+          */}
+        <div className="mx-auto grid w-full max-w-shell items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
+          <div className="max-w-[26rem]">
+            <h1 className="font-display text-[clamp(30px,4vw,44px)] font-semibold leading-[1.08] tracking-[-0.035em] text-ink">
+              Welcome back
             </h1>
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-              Everything's still handled. Nothing slipped through while you were away.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+            <p className="mt-4 text-[17px] leading-[1.55] text-ink-2">Your work kept going while you were away.</p>
+            <p className="mt-5 text-[15px] font-medium text-ink-3">Sign in to see what got done.</p>
+          </div>
 
-      {/* Two-Column Login Section */}
-      <section className="relative py-24 md:py-32 px-4 bg-zinc-900">
-        <div className="max-w-7xl mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Left Column - Information */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="text-2xl md:text-3xl font-black text-white mb-4">
-                  Your Work Is Still Running
-                </h2>
-                <p className="text-base md:text-lg text-slate-300 leading-relaxed">
-                  Sign back in to see what got handled while you were away.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-orange-500/20 border border-orange-400/30 flex items-center justify-center">
-                    <Zap className="w-6 h-6 text-orange-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Nothing Missed</h3>
-                    <p className="text-slate-400">Everything kept running. Work got done. You're all caught up.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-500/20 border border-purple-400/30 flex items-center justify-center">
-                    <Shield className="w-6 h-6 text-purple-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">Your Data Stays Safe</h3>
-                    <p className="text-slate-400">Bank-level security. You control what we can access.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-blue-500/20 border border-blue-400/30 flex items-center justify-center">
-                    <Lock className="w-6 h-6 text-blue-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-white mb-1">See What Got Done</h3>
-                    <p className="text-slate-400">Full history of every task that got handled automatically.</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-zinc-800">
-                <h3 className="text-lg font-bold text-white mb-3">See What's Running</h3>
-                <ul className="space-y-2">
-                  {[
-                    'What got handled automatically',
-                    "What's being watched right now",
-                    'How much work got done',
-                    "What you're paying for"
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-slate-300">
-                      <div className="w-1.5 h-1.5 bg-orange-400 rounded-full"></div>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-
+          <div>
             {/* Right Column - Login Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="bg-zinc-900/90 backdrop-blur-xl border border-zinc-800 p-6 md:p-8 h-full">
-                <h3 className="text-xl font-bold text-white mb-6">Sign In to Your Account</h3>
-
+            {/*
+              * A plain div with a CSS entrance, NOT `motion.div`.
+              *
+              * `initial={{ opacity: 0 }}` is server-rendered as an inline
+              * `opacity:0`, so the form was invisible until framer-motion
+              * hydrated, and stayed invisible if the bundle never arrived.
+              * See `.rise-in` in globals.css. It also respects
+              * prefers-reduced-motion, which the motion version did not.
+              */}
+            <div className="rise-in">
+              <div className="bg-surface backdrop-blur-xl border border-line p-6 md:p-8 h-full rounded-[22px]">
                 <form onSubmit={handleLogin} className="space-y-6">
                   {/* Error Message */}
                   {errorMessage && (
-                    <div className="bg-red-500/10 border border-red-500/30 p-3">
-                      <p className="text-red-300 text-sm">{errorMessage}</p>
+                    <div className="bg-red-50 border border-red-200 p-3 rounded-xl">
+                      <p className="text-red-600 text-sm">{errorMessage}</p>
                     </div>
                   )}
 
                   {/* Email Input */}
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-slate-300 block">
-                      Email Address *
+                    <label htmlFor="email" className="text-sm font-medium text-ink-2 block">
+                      Email *
                     </label>
                     <input
                       id="email"
                       type="email"
-                      placeholder="Enter your email"
-                      className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200"
+                      placeholder="you@example.com"
+                      className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 rounded-xl"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
@@ -299,27 +240,41 @@ export default function LoginPage() {
 
                   {/* Password Input */}
                   <div className="space-y-2">
-                    <label htmlFor="password" className="text-sm font-medium text-slate-300 block">
+                    <label htmlFor="password" className="text-sm font-medium text-ink-2 block">
                       Password *
                     </label>
                     <div className="relative">
                       <input
                         id="password"
                         type={showPassword ? 'text' : 'password'}
-                        placeholder="Enter your password"
-                        className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-200 pr-12"
+                        placeholder="Your password"
+                        className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all duration-200 pr-12 rounded-xl"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                         disabled={isLoading}
                       />
+                      {/*
+                        * `aria-label` + `aria-pressed`: this button had no
+                        * accessible name at all, so a screen reader announced
+                        * "button" and nothing else. The label also has to say
+                        * what the NEXT tap does, which is why it flips.
+                        *
+                        * `px-4` rather than `pr-4` widens the hit area from
+                        * 36px to 52px. On a phone this control sits a thumb's
+                        * width from the field's own tap area, and a narrow
+                        * target here means tapping the eye and getting the
+                        * keyboard instead.
+                        */}
                       <button
                         type="button"
-                        className="absolute inset-y-0 right-0 pr-4 flex items-center"
+                        className="absolute inset-y-0 right-0 flex items-center px-4"
                         onClick={() => setShowPassword(!showPassword)}
                         disabled={isLoading}
+                        aria-label={showPassword ? 'Hide password' : 'Show password'}
+                        aria-pressed={showPassword}
                       >
-                        <svg className="w-5 h-5 text-slate-400 hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 text-ink-2 hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           {showPassword ? (
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.878 9.878L3 3m6.878 6.878L21 21" />
                           ) : (
@@ -338,9 +293,9 @@ export default function LoginPage() {
                     <button
                       type="button"
                       onClick={() => setIsForgotOpen(true)}
-                      className="text-sm text-slate-400 hover:text-orange-400 transition-colors duration-200"
+                      className="inline-flex min-h-11 items-center px-1 text-sm text-ink-2 transition-colors duration-200 hover:text-accent"
                     >
-                      Forgot your password?
+                      Forgotten your password?
                     </button>
                   </div>
 
@@ -348,26 +303,26 @@ export default function LoginPage() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed font-bold text-white py-4 px-6 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/25 flex items-center justify-center gap-2"
+                    className="w-full bg-accent hover:bg-accent-hover disabled:opacity-50 disabled:cursor-not-allowed font-bold text-white py-4 px-6 transition-all duration-300 hover:shadow-lg hover:shadow-accent/25 flex items-center justify-center gap-2 rounded-xl"
                   >
                     {isLoading ? (
                       <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Signing In...
+                        <div className="w-4 h-4 border-2 border-ink border-t-transparent rounded-full animate-spin"></div>
+                        Signing you in…
                       </>
                     ) : (
                       <>
                         <Mail className="w-4 h-4" />
-                        Sign In
+                        Sign in
                       </>
                     )}
                   </button>
 
                   {/* Divider */}
                   <div className="relative flex items-center py-2">
-                    <div className="flex-grow border-t border-zinc-800"></div>
-                    <span className="flex-shrink mx-4 text-slate-400 text-sm">or continue with</span>
-                    <div className="flex-grow border-t border-zinc-800"></div>
+                    <div className="flex-grow border-t border-line"></div>
+                    <span className="flex-shrink mx-4 text-ink-2 text-sm">or continue with</span>
+                    <div className="flex-grow border-t border-line"></div>
                   </div>
 
                   {/* Google Sign In Button */}
@@ -375,7 +330,7 @@ export default function LoginPage() {
                     type="button"
                     onClick={handleGoogleSignIn}
                     disabled={isLoading}
-                    className="w-full bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-zinc-600 text-white font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
+                    className="w-full bg-sunk hover:bg-line-2 border border-line-2 hover:border-line-2 text-ink font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
                   >
                     <svg className="w-5 h-5" viewBox="0 0 24 24">
                       <path
@@ -399,28 +354,28 @@ export default function LoginPage() {
                   </button>
                 </form>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer Info Section */}
-      <section className="relative py-12 px-4 bg-zinc-950 border-t border-zinc-800">
+      <section className="relative py-12 px-4 bg-canvas border-t border-line">
         <div className="max-w-7xl mx-auto px-4 lg:px-6">
           <div className="text-center space-y-4">
-            <p className="text-slate-400 text-sm">
-              Don't have an account?{' '}
-              <Link href="/signup" className="text-orange-400 hover:text-orange-300 font-bold transition-colors">
+            <p className="text-ink-2 text-sm">
+              Don’t have an account?{' '}
+              <Link href="/signup" className="text-accent hover:text-accent font-bold transition-colors">
                 Sign up here
               </Link>
             </p>
-            <p className="text-slate-500 text-xs">
+            <p className="text-ink-3 text-xs">
               By signing in, you agree to our{' '}
-              <Link href="/terms" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/terms" className="text-ink-2 hover:text-ink transition-colors">
                 Terms of Service
               </Link>
               {' '}and{' '}
-              <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/privacy" className="text-ink-2 hover:text-ink transition-colors">
                 Privacy Policy
               </Link>
             </p>
@@ -433,31 +388,31 @@ export default function LoginPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 px-4"
+          className="fixed inset-0 bg-night/70 backdrop-blur-sm flex items-center justify-center z-50 px-4"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             className="max-w-md w-full"
           >
-            <div className="bg-zinc-900 border border-zinc-800 p-6">
-              <h2 className="text-2xl font-bold text-white mb-6">Reset Password</h2>
+            <div className="bg-surface border border-line p-6 rounded-[22px]">
+              <h2 className="text-2xl font-bold text-ink mb-6">Reset your password</h2>
               <form onSubmit={handleForgotPassword} className="space-y-4">
                 <input
                   type="email"
-                  placeholder="Enter your email"
-                  className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-3 bg-sunk border border-line-2 text-ink placeholder-ink-3 focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent rounded-xl"
                   value={forgotEmail}
                   onChange={(e) => setForgotEmail(e.target.value)}
                   required
                 />
                 {forgotSuccess && (
-                  <p className="text-green-400 text-sm bg-green-500/10 border border-green-500/30 p-3">
+                  <p className="text-pos text-sm bg-pos-soft border border-pos/30 p-3 rounded-xl">
                     {forgotSuccess}
                   </p>
                 )}
                 {forgotError && (
-                  <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/30 p-3">
+                  <p className="text-red-600 text-sm bg-red-50 border border-red-200 p-3 rounded-xl">
                     {forgotError}
                   </p>
                 )}
@@ -465,13 +420,13 @@ export default function LoginPage() {
                   <button
                     type="button"
                     onClick={() => setIsForgotOpen(false)}
-                    className="flex-1 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white font-semibold transition-all"
+                    className="flex-1 px-4 py-3 bg-sunk hover:bg-line-2 text-ink font-semibold transition-all"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="flex-1 px-4 py-3 bg-orange-500 hover:bg-orange-600 text-white font-semibold transition-all shadow-lg hover:shadow-xl"
+                    className="flex-1 px-4 py-3 bg-accent hover:bg-accent-hover text-white font-semibold transition-all shadow-lg hover:shadow-xl rounded-xl"
                   >
                     Send Link
                   </button>
