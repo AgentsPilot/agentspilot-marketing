@@ -41,10 +41,10 @@ NEXT_PUBLIC_MAIN_APP_URL=http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=https://jgccgkyhpwirgknnceoh.supabase.co
 
 # 3. Supabase Anon Key
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnY2Nna3locHdpcmdrbm5jZW9oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIxNjY3OTMsImV4cCI6MjA2Nzc0Mjc5M30.h6VfcNOsEusgykZ9nR8mUStMrmbePp4ThFLlZHpqtWo
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<REDACTED supabase legacy JWT (role=anon) - set it in the Vercel environment>
 
 # 4. Supabase Service Role Key
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpnY2Nna3locHdpcmdrbm5jZW9oIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MjE2Njc5MywiZXhwIjoyMDY3NzQyNzkzfQ.NkUzCksSNNDy0UNr3jD-JYPAHUfEBKXc4wM6zqGEr2s
+SUPABASE_SERVICE_ROLE_KEY=<REDACTED supabase legacy JWT (role=service_role) - set it in the Vercel environment>
 ```
 
 **For each variable:**
