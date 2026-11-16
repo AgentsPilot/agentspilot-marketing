@@ -85,7 +85,13 @@ export default function AuthCallbackPage() {
               .from('profiles')
               .insert({
                 id: user.id,
-                full_name: user.user_metadata?.full_name || '',
+                /*
+                 * Google puts the display name in `full_name`. Microsoft
+                 * (`azure`) does not: it returns `name`, so reading only
+                 * `full_name` creates every Microsoft account with a blank
+                 * name, and nothing later asks for it again.
+                 */
+                full_name: user.user_metadata?.full_name || user.user_metadata?.name || '',
                 role: 'user',
                 created_at: new Date().toISOString(),
                 updated_at: new Date().toISOString(),

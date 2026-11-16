@@ -48,6 +48,43 @@ export default function LoginPage() {
     }
   };
 
+  /*
+   * Microsoft, which Supabase calls `azure`.
+   *
+   * `scopes` is not optional here the way it is for Google: without `email` in
+   * the list the account arrives with no address at all, and every downstream
+   * thing that greets someone by their email has nothing to show. `openid` and
+   * `profile` are what carry the display name.
+   *
+   * The tenant lives in the Supabase provider settings, not here. It is left
+   * blank there, which is the `/common/` authority: personal outlook.com
+   * accounts and work accounts from any organisation, the same authority the
+   * Outlook plugin already uses.
+   */
+  const handleMicrosoftSignIn = async () => {
+    setErrorMessage('');
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'azure',
+        options: {
+          scopes: 'openid profile email',
+          redirectTo: `${window.location.origin}/auth/callback`,
+        }
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+        setIsLoading(false);
+      }
+      // If successful, user will be redirected to the Microsoft sign-in flow
+    } catch {
+      setErrorMessage('Failed to sign in with Microsoft. Please try again.');
+      setIsLoading(false);
+    }
+  };
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage('');
@@ -351,6 +388,26 @@ export default function LoginPage() {
                       />
                     </svg>
                     Continue with Google
+                  </button>
+
+                  {/*
+                    * Microsoft's mark keeps its own four colours. Their brand
+                    * terms do not allow recolouring it, so this is the one
+                    * icon on the page that does not take `currentColor`.
+                    */}
+                  <button
+                    type="button"
+                    onClick={handleMicrosoftSignIn}
+                    disabled={isLoading}
+                    className="w-full bg-sunk hover:bg-line-2 border border-line-2 hover:border-line-2 text-ink font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
+                  >
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="#F25022" d="M1 1h10.2v10.2H1z" />
+                      <path fill="#7FBA00" d="M12.8 1H23v10.2H12.8z" />
+                      <path fill="#00A4EF" d="M1 12.8h10.2V23H1z" />
+                      <path fill="#FFB900" d="M12.8 12.8H23V23H12.8z" />
+                    </svg>
+                    Continue with Microsoft
                   </button>
                 </form>
               </div>
