@@ -43,6 +43,38 @@ export default function SignupPage() {
     }
   };
 
+  /*
+   * Microsoft, which Supabase calls `azure`.
+   *
+   * `scopes` matters here in a way it does not for Google: without `email` the
+   * account arrives with no address, and `openid profile` is what carries the
+   * display name the profile row is created from. Which Microsoft accounts are
+   * allowed is a Supabase provider setting, not a value passed from here.
+   */
+  const handleMicrosoftSignUp = async () => {
+    setErrorMessage('');
+    setIsLoading(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'azure',
+        options: {
+          scopes: 'openid profile email',
+          redirectTo: `${window.location.origin}/auth/callback`,
+        }
+      });
+
+      if (error) {
+        setErrorMessage(error.message);
+        setIsLoading(false);
+      }
+      // If successful, user will be redirected to the Microsoft sign-in flow
+    } catch {
+      setErrorMessage('Failed to sign up with Microsoft. Please try again.');
+      setIsLoading(false);
+    }
+  };
+
   // Check if email already exists
   const checkEmailExists = async (emailToCheck: string) => {
     if (!emailToCheck.trim()) return;
@@ -538,10 +570,31 @@ export default function SignupPage() {
                   Sign up with Google
                 </button>
 
+                {/* Microsoft Sign Up Button */}
+                {/*
+                  * Microsoft's mark keeps its own four colours. Their brand
+                  * terms do not allow recolouring it, so this is the one icon
+                  * on the page that does not take `currentColor`.
+                  */}
+                <button
+                  type="button"
+                  onClick={handleMicrosoftSignUp}
+                  disabled={isLoading}
+                  className="w-full bg-sunk hover:bg-line-2 border border-line-2 hover:border-line-2 text-ink font-semibold py-3 px-4 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50 flex items-center justify-center gap-3"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#F25022" d="M1 1h10.2v10.2H1z" />
+                    <path fill="#7FBA00" d="M12.8 1H23v10.2H12.8z" />
+                    <path fill="#00A4EF" d="M1 12.8h10.2V23H1z" />
+                    <path fill="#FFB900" d="M12.8 12.8H23V23H12.8z" />
+                  </svg>
+                  Sign up with Microsoft
+                </button>
+
                 {/* OAuth Info */}
                 <div className="text-center">
                   <p className="text-xs text-ink-3">
-                    By signing up with Google, you agree to our terms. If you already have an account, you’ll be signed in.
+                    By signing up with Google or Microsoft, you agree to our terms. If you already have an account, you’ll be signed in.
                   </p>
                 </div>
               </form>
